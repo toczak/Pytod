@@ -1,0 +1,3 @@
+//todo zrób paginacje - czesc zrobione, ale bez numerow - blad w IndexOutOfBounds
+ //todo filtr -Aplikacja ma inaczej wyglądać (np. inny kolor tła) w zależności od przeglądarki
+ //todo sluchacz zdarzen - ma wyświetlać  liczbę zalogowanych użytkowników (ustaloną na moment wejścia użytkownika na stronę internetową)

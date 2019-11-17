@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="pytod:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/pytod_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="pytod/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pytod" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="application" name="json-simple-1.1.1" />
+          <element id="library" level="application" name="javax.servlet.jsp.jstl:jstl-api:1.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
