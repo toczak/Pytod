@@ -43,12 +43,13 @@ public class LoginListener implements ServletContextListener,
     public void sessionDestroyed(HttpSessionEvent se) {
         /* Session is destroyed. */
 
-//        HttpSession s = se.getSession();
-        if (context.getAttribute("count") != null) {
-//            System.out.println(s.getAttribute("login"));
+        HttpSession s = se.getSession();
+        if (context.getAttribute("count") != null && s.getAttribute("login")!=null) {
+            System.out.println("usuwam sesje: " + s.getAttribute("login"));
             context.setAttribute("count",
                     (int) context.getAttribute("count") - 1);
-        }
+            s.setAttribute("login",null);
+        } else System.out.println("Probuje usunac, ale nie moge");
 
     }
 
