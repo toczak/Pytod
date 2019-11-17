@@ -101,7 +101,6 @@
             </c:forEach>
 
 
-            <%--<jsp:include page="ListPost" />--%>
 
             <nav aria-label="Panel nawigacji">
                 <ul class="pagination justify-content-center">
@@ -138,7 +137,11 @@
                         <br/>
                     </c:if>
                     <div class="alert alert-dark text-center" role="alert">
-                        Aktualnie użytkowników: <span class="badge badge-light">1</span>
+                        Zalogowani użytkownicy:
+                        <span class="badge badge-light">
+                            ${applicationScope['count']}
+                        </span>
+
 
                     </div>
                 </div>

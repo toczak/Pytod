@@ -6,8 +6,16 @@
 
     <context-param>
         <param-name>maxPost</param-name>
-        <param-value>10</param-value>
+        <param-value>3</param-value>
     </context-param>
+    <listener>
+        <listener-class>
+            LoginListener
+        </listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
     <filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>LoginFilter</filter-class>
@@ -21,35 +29,35 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>registerServlet</servlet-name>
-        <servlet-class>RegisterServlet</servlet-class>
+        <servlet-class>Servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loginServlet</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>Servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>logoutServlet</servlet-name>
-        <servlet-class>LogoutServlet</servlet-class>
+        <servlet-class>Servlets.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addPostServlet</servlet-name>
-        <servlet-class>AddPostServlet</servlet-class>
+        <servlet-class>Servlets.AddPostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>indexPostServlet</servlet-name>
-        <servlet-class>IndexPostServlet</servlet-class>
+        <servlet-class>Servlets.IndexPostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>postServlet</servlet-name>
-        <servlet-class>PostServlet</servlet-class>
+        <servlet-class>Servlets.PostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addAnswerServlet</servlet-name>
-        <servlet-class>AddAnswerServlet</servlet-class>
+        <servlet-class>Servlets.AddAnswerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>searchServlet</servlet-name>
-        <servlet-class>SearchServlet</servlet-class>
+        <servlet-class>Servlets.SearchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registerServlet</servlet-name>

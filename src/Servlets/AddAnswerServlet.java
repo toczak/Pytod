@@ -1,3 +1,5 @@
+package Servlets;
+
 import JSON.JSONAnswerPost;
 import Model.AnswerPost;
 
@@ -13,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "AddAnswerServlet")
+@WebServlet(name = "Servlets.AddAnswerServlet")
 public class AddAnswerServlet extends HttpServlet {
     List<AnswerPost> answerPostList;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

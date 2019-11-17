@@ -1,3 +1,5 @@
+package Servlets;
+
 import JSON.JSONUser;
 import Model.User;
 
@@ -12,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.regex.Pattern;
 
-@WebServlet(name = "RegisterServlet")
+@WebServlet(name = "Servlets.RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     List<User> userList;
 
@@ -72,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
                         requestDispatcher.include(request, response);
                         return;
                     }
-                }
+                } else userList = new ArrayList<>();
                 RequestDispatcher rd = request.getRequestDispatcher("index");
                 request.setAttribute("komunikat","<center><font color='green'><h2>Poprawnie się zarejestrowałeś! Możesz się zalogować.</h2></font></center>");
                 User user = new User(name, email, password);

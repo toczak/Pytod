@@ -67,7 +67,7 @@
             </h1>
 
             <!-- Blog Post -->
-            <div class="card mb-4 bg-light border-dark">
+            <div class="card mb-4 ${color} border-dark">
                 <div class="card-body">
                     <div class="row">
                         <p class="card-text col-9">${question}</p>
@@ -132,8 +132,10 @@
                         <br/>
                     </c:if>
                     <div class="alert alert-dark text-center" role="alert">
-                        Aktualnie użytkowników: <span class="badge badge-light">1</span>
-
+                        Zalogowani użytkownicy:
+                        <span class="badge badge-light">
+                            ${applicationScope['count']}
+                        </span>
                     </div>
                 </div>
             </div>

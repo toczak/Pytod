@@ -1,4 +1,4 @@
-/*
+package Servlets;/*
 import JSON.JSONAnswerPost;
 import JSON.JSONPost;
 import Model.Post;
@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "IndexPostServlet")
-public class IndexPostServlet extends HttpServlet {
+@WebServlet(name = "Servlets.IndexPostServlet")
+public class Servlets.IndexPostServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -67,7 +67,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "IndexPostServlet")
+@WebServlet(name = "Servlets.IndexPostServlet")
 public class IndexPostServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,7 +98,6 @@ public class IndexPostServlet extends HttpServlet {
         request.setAttribute("currentPage",currentPage);
         request.setAttribute("maxPage",maxPage);
         request.setAttribute("postList", pagePostList);
-
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }

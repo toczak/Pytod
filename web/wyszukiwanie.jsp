@@ -85,18 +85,15 @@
 
             <nav aria-label="Panel nawigacji">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    <li class="page-item <c:if test="${currentPage==1}">disabled</c:if>">
+
+                        <a class="page-link" href="szukaj?fraza=${fraza}&strona=${currentPage-1}">Poprzednia</a>
                     </li>
-                    <li class="page-item active">
-                      <span class="page-link">
-                        1
-                      </span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                    <li class="page-item active"><span class="page-link">
+                        ${currentPage}
+                    </span></li>
+                    <li class="page-item <c:if test="${currentPage eq maxPage}">disabled</c:if>">
+                        <a class="page-link" href="szukaj?fraza=${fraza}&strona=${currentPage+1}">Następna</a>
                     </li>
                 </ul>
             </nav>
@@ -108,17 +105,8 @@
         <div class="col-md-4">
 
             <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Znajdź pytanie</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Szukana fraza...">
-                        <span class="input-group-btn">
-                           <a class="btn btn-secondary" href="szukaj">Szukaj</a>
-                          </span>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="SearchWidget.jsp" %>
+
 
             <div class="card my-4">
                 <h5 class="card-header">Opcje</h5>
@@ -128,26 +116,22 @@
                         <br/>
                     </c:if>
                     <div class="alert alert-dark text-center" role="alert">
-                        Aktualnie użytkowników: <span class="badge badge-light">1</span>
-
+                        Zalogowani użytkownicy:
+                        <span class="badge badge-light">
+                            ${applicationScope['count']}
+                        </span>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-    <!-- /.row -->
-
 </div>
-<!-- /.container -->
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Patryk Potoczak 2019</p>
     </div>
-    <!-- /.container -->
 </footer>
 
 <!-- Bootstrap core JavaScript -->

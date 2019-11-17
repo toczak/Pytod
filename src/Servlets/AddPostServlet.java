@@ -1,3 +1,5 @@
+package Servlets;
+
 import JSON.JSONPost;
 import Model.Post;
 
@@ -13,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "AddPostServlet")
+@WebServlet(name = "Servlets.AddPostServlet")
 public class AddPostServlet extends HttpServlet {
 
     List<Post> postList;
@@ -27,7 +29,7 @@ public class AddPostServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
-        String question = request.getParameter("textareaQuestion");
+        String question = request.getParameter("textareaQuestion").replace("\r\n"," <br/> ");
 
         if (question.isEmpty()) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("zadaj.jsp");

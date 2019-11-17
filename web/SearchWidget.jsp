@@ -13,7 +13,7 @@
         <form method="get" action="szukaj">
 
             <div class="input-group">
-                <input type="text" name="searchInput" class="form-control" placeholder="Szukana fraza...">
+                <input type="text" name="fraza" class="form-control" placeholder="Szukana fraza...">
                 <span class="input-group-btn">
 
                 <input type="submit" class="btn btn-secondary" value="Szukaj"/>

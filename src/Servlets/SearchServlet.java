@@ -1,3 +1,5 @@
+package Servlets;
+
 import JSON.JSONPost;
 import Model.Post;
 
@@ -11,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SearchServlet")
+@WebServlet(name = "Servlets.SearchServlet")
 public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -25,7 +27,7 @@ public class SearchServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         JSONPost.readPostList();
-        List<Post> postList = JSONPost.searchAndGetPostListReverse(request.getParameter("searchInput"));
+        List<Post> postList = JSONPost.searchAndGetPostListReverse(request.getParameter("fraza"));
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("maxPost"));
         int maxPage = (postList.size() / maxPost);
@@ -41,7 +43,7 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("currentPage",currentPage);
         request.setAttribute("maxPage",maxPage);
         request.setAttribute("postList", pagePostList);
-
+        request.setAttribute("fraza",request.getParameter("fraza"));
         RequestDispatcher rd = request.getRequestDispatcher("wyszukiwanie.jsp");
         rd.forward(request, response);
     }

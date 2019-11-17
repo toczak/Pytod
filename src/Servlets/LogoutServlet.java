@@ -1,12 +1,15 @@
+package Servlets;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LogoutServlet")
+@WebServlet(name = "Servlets.LogoutServlet")
 public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -17,7 +20,9 @@ public class LogoutServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         RequestDispatcher rd = request.getRequestDispatcher("index");
         System.out.println("Wylogowano!");
-        request.getSession().setAttribute("login",null);
+        HttpSession session = request.getSession();
+        session.setAttribute("login",null);
+        session.invalidate();
         rd.forward(request, response);
     }
 }

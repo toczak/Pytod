@@ -106,8 +106,10 @@
                     <a class="btn btn-success btn-block" href="zadaj.jsp">Zadaj pytanie</a>
                     <br/>
                     <div class="alert alert-dark text-center" role="alert">
-                        Aktualnie użytkowników: <span class="badge badge-light">1</span>
-
+                        Zalogowani użytkownicy:
+                        <span class="badge badge-light">
+                            ${applicationScope['count']}
+                        </span>
                     </div>
                 </div>
             </div>
