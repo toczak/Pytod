@@ -66,7 +66,7 @@ public class JSONUser {
             userListJSON.add(userObject);
         }
 
-        try (FileWriter file = new FileWriter("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Users.json")) {
+        try (FileWriter file = new FileWriter("Dane/Users.json")) {
             file.write(userListJSON.toJSONString());
             file.flush();
 

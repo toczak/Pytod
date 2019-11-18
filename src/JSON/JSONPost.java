@@ -92,7 +92,7 @@ public class JSONPost {
             postListJSON.add(postObject);
         }
 
-        try (FileWriter file = new FileWriter("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Posts.json")) {
+        try (FileWriter file = new FileWriter("Dane/Posts.json")) {
             file.write(postListJSON.toJSONString());
             file.flush();
 

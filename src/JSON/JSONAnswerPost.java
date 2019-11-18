@@ -43,7 +43,7 @@ public class JSONAnswerPost {
     public static boolean readAnswerPostList() {
         JSONParser jsonParser = new JSONParser();
         answerPostList = new ArrayList<>();
-        try (FileReader reader = new FileReader("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Answers.json")) {
+        try (FileReader reader = new FileReader("Dane/Answers.json")) {
             Object obj = jsonParser.parse(reader);
 
             JSONArray answerPostListJSON = (JSONArray) obj;
