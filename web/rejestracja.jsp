@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <c:if test="${sessionScope.login!=null}">
-    <c:redirect url="index.jsp"/>
+    <c:redirect url="index"/>
 </c:if>
 <!DOCTYPE html>
 <html lang="en">

@@ -36,7 +36,10 @@ public class JSONPost {
         List<Post> postListNew = new ArrayList<>();
         for (int i = postList.size() - 1; i >= 0; i--) {
             String question = postList.get(i).getTextQuestion();
-            if(question.matches(".*\\b"+searchText+"\\b.*")) {
+            String author = postList.get(i).getAuthor();
+            String date = postList.get(i).getDate();
+            if (question.matches(".*\\b" + searchText + "\\b.*") || author.matches(".*\\b" + searchText + "\\b.*")
+                    || date.matches(".*\\b" + searchText + "\\b.*")) {
                 postListNew.add(postList.get(i));
             }
         }

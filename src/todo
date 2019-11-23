@@ -1,3 +1,18 @@
 //todo zrób paginacje - czesc zrobione, ale bez numerow - blad w IndexOutOfBounds
 //todo poprawić usuwanie sesji - wywlouje 4 razy? ale jest ok
 //todo zrób ścieżki relatywne w projekcie
+//todo podziel projekt na:
+//todo -prawa sekcja - najswiezsze pytania z i kazde z przyciskiem do strony z pytaniem
+//todo stopka: moje konto (przycisk na strone w ktorej beda jego dane), moje pytania (wyswietlich wszystkich pytan uzytkownika), moje odpowiedzi (to samo ale tylko do odpowiedzi)
+
+//todo 2. Dodaj możliwość oceny udzielanych odpowiedzi. Wymagania:
+//todo - oceniać mogą tylko zalogowani użytkownicy,
+//todo - użytkownik może ocenić dane pytanie tylko i wyłącznie 1 raz (dla uproszczenia można
+//todo przyjąć, że informacja o tym przechowywana jest w długoterminowym ciasteczku, ale można
+//todo wykorzystać dowolną metodykę w tym zapis do plików odpowiednich informacji),
+//todo - komponent oceny (należy wykonać własny znacznik zgodnie z informacjami
+//todo przedstawionymi na wykładzie) ma możliwość wyboru wartości z przedziału 0 – 10,
+//todo - w miejscu wyświetlania odpowiedzi informacja o jego ocenie ma się pojawiać na samym
+//todo dole odpowiedzi. Ocena pytania ma być średnią wszystkich ocen.
+
+//todo duzo wyskakuje Błąd w operacji na pliku

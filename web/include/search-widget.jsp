@@ -19,6 +19,8 @@
                 <input type="submit" class="btn btn-secondary" value="Szukaj"/>
                 </span>
             </div>
+            <a class="h6 mt-1" href="wyszukiwanie.jsp">Wyszukiwanie zaawansowane...</a>
+
         </form>
 
     </div>

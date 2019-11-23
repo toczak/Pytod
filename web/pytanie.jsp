@@ -122,7 +122,7 @@
         <div class="col-md-4">
 
             <!-- Search Widget -->
-            <%@ include file = "SearchWidget.jsp" %>
+            <%@ include file = "include/search-widget.jsp" %>
 
             <div class="card my-4">
                 <h5 class="card-header">Opcje</h5>
