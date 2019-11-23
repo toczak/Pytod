@@ -54,9 +54,11 @@ public class Servlets.IndexPostServlet extends HttpServlet {
 
 import JSON.JSONAnswerPost;
 import JSON.JSONPost;
+import JSON.JSONUser;
 import Model.Post;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,6 +72,14 @@ import java.util.List;
 @WebServlet(name = "Servlets.IndexPostServlet")
 public class IndexPostServlet extends HttpServlet {
 
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        JSONAnswerPost.setRealPath(config.getServletContext().getRealPath(""));
+        JSONPost.setRealPath(config.getServletContext().getRealPath(""));
+        JSONUser.setRealPath(config.getServletContext().getRealPath(""));
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -82,9 +92,9 @@ public class IndexPostServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         JSONPost.readPostList();
-        List<Post> postList = JSONPost.getPostListReverse();
+        List<Post> postList = JSONPost.getPostList();
         int currentPage;
-        int maxPost = Integer.parseInt(getServletContext().getInitParameter("maxPost"));
+        int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
         int maxPage = (postList.size() / maxPost);
         if(maxPost * maxPage < postList.size())
             maxPage++;

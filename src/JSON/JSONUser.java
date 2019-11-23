@@ -15,6 +15,11 @@ import java.util.List;
 public class JSONUser {
 
     static List<User> userList;
+    private static String realPath;
+
+    public static void setRealPath(String path){
+        realPath = path;
+    }
 
     public static List<User> getUserList() {
         return userList;
@@ -23,7 +28,7 @@ public class JSONUser {
     public static boolean readUsersList() {
         JSONParser jsonParser = new JSONParser();
         userList = new ArrayList<>();
-        try (FileReader reader = new FileReader("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Users.json")) {
+        try (FileReader reader = new FileReader(realPath + "Dane\\Users.json")) {
             Object obj = jsonParser.parse(reader);
 
             JSONArray userListJSON = (JSONArray) obj;
@@ -35,6 +40,8 @@ public class JSONUser {
 
         } catch (IOException e) {
             System.out.println("------------------- Błąd w operacji na pliku!");
+                        e.printStackTrace();
+
             return false;
         } catch (ParseException e) {
             System.out.println("------------------- Błąd w parsowaniu!");

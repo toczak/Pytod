@@ -26,10 +26,8 @@
 
 <body>
 
-<!-- Navigation -->
 <jsp:include page="include/navbar.jsp"/>
 
-<!-- Page Content -->
 <div class="container mt-2 py-5">
     ${komunikat}
 
@@ -39,7 +37,6 @@
     </div>
 </div>
 
-<!-- Footer -->
 <%@ include file="include/footer.jsp" %>
 
 

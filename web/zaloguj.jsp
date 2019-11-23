@@ -23,41 +23,12 @@
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="res/icon.ico?">
 
 </head>
 
 <body class="text-center">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index">Pytod - pytaj i odpowiadaj</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="index">Strona główna
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <c:choose>
-                        <c:when test="${sessionScope.login==null}">
-                            <a class="nav-link" href="zaloguj.jsp">Zaloguj się</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="nav-link btn btn-primary" href="wyloguj">Wyloguj</a>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="include/navbar.jsp"/>
 
 <form class="form-signin" method="post" action="logowanie">
     <h1 class="h3 mb-3 font-weight-normal">Logowanie</h1>
@@ -74,6 +45,7 @@
     <!--<p class="mt-5 mb-3 text-muted">© 2017-2018</p>-->
 </form>
 
+<%--<%@ include file="include/footer.jsp" %>--%>
 
 </body>
 </html>

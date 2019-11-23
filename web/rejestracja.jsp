@@ -24,34 +24,12 @@
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="res/icon.ico?">
 
 </head>
 
 <body class="text-center">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index">Pytod - pytaj i odpowiadaj</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="index">Strona główna
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="zaloguj.jsp">Zaloguj się</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="include/navbar.jsp"/>
 
 <form class="form-signin" method="post" action="rejestracja">
     <h1 class="h3 mb-3 font-weight-normal">Rejestracja</h1>
@@ -66,6 +44,7 @@
     <input class="btn btn-lg btn-primary btn-block" value="Zarejestruj" type="submit"/>
 </form>
 
+<%--<%@ include file="include/footer.jsp" %>--%>
 
 </body>
 </html>

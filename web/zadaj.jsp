@@ -20,44 +20,15 @@
 
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
+    <link rel="shortcut icon" href="res/icon.ico?">
 
 </head>
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index">Pytod - pytaj i odpowiadaj</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+<jsp:include page="include/navbar.jsp"/>
 
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="index">Strona główna
-                    </a>
-                </li>
-
-                <c:choose>
-                    <c:when test="${sessionScope.login==null}">
-                        <a class="nav-link" href="zaloguj.jsp">Zaloguj się</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="btn btn-secondary" href="wyloguj">Wyloguj</a>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Page Content -->
-<div class="container mb-3">
+<div class="container mt-2 py-5 mb-3">
 
     <div class="row">
 
@@ -83,52 +54,14 @@
         </div>
 
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Znajdź pytanie</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Szukana fraza...">
-                        <span class="input-group-btn">
-                                           <a class="btn btn-secondary" href="wyszukiwanie.jsp">Szukaj</a>
-
-              </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                <h5 class="card-header">Opcje</h5>
-                <div class="card-body">
-                    <a class="btn btn-success btn-block" href="zadaj.jsp">Zadaj pytanie</a>
-                    <br/>
-                    <div class="alert alert-dark text-center" role="alert">
-                        Zalogowani użytkownicy:
-                        <span class="badge badge-light">
-                            ${applicationScope['count']}
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <%@ include file="include/panel.jsp" %>
 
     </div>
     <!-- /.row -->
 
 </div>
-<!-- /.container -->
 
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Patryk Potoczak 2019</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<%@ include file="include/footer.jsp" %>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,45 +17,50 @@ import java.util.List;
 public class JSONAnswerPost {
 
     static List<AnswerPost> answerPostList;
+    private static String realPath;
+
+    public static void setRealPath(String path) {
+        realPath = path;
+    }
+
+    public static int getCountOfAnswers(){
+        return answerPostList.size();
+    }
 
     public static List<AnswerPost> getAnswerPostList() {
         return answerPostList;
     }
 
-    public static List<AnswerPost> getAnswerPostListWithPostId(int id){
+    public static List<AnswerPost> getAnswerPostListWithPostId(int id) {
         List<AnswerPost> list = new ArrayList<>();
-        for(AnswerPost answerPost : answerPostList){
-            if(answerPost.getIdPost()==id)
+        for (AnswerPost answerPost : answerPostList) {
+            if (answerPost.getIdPost() == id)
                 list.add(answerPost);
         }
         return list;
     }
 
-    public static int getCountAnswerByPostId(int id){
+    public static int getCountAnswerByPostId(int id) {
         readAnswerPostList();
-        int count=0;
-        for(AnswerPost answerPost : answerPostList){
-            if(answerPost.getIdPost()==id)
+        int count = 0;
+        for (AnswerPost answerPost : answerPostList) {
+            if (answerPost.getIdPost() == id)
                 count++;
         }
         return count;
     }
 
+
     public static boolean readAnswerPostList() {
         JSONParser jsonParser = new JSONParser();
         answerPostList = new ArrayList<>();
-        try (FileReader reader = new FileReader("Dane/Answers.json")) {
+        try (FileReader reader = new FileReader(realPath + "Dane\\Answers.json")) {
             Object obj = jsonParser.parse(reader);
-
             JSONArray answerPostListJSON = (JSONArray) obj;
-//            System.out.println(answerPostListJSON);
-//            for(Object userObject : postListJSON){
-//                parseUserObject((JSONObject) userObject);
-//            }
             answerPostListJSON.forEach(answer -> parseAnswerPostObject((JSONObject) answer));
-
         } catch (IOException e) {
             System.out.println("------------------- Błąd w operacji na pliku!");
+//                        e.printStackTrace();
             return false;
         } catch (ParseException e) {
             System.out.println("------------------- Błąd w parsowaniu!");

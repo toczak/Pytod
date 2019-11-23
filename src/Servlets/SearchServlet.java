@@ -29,7 +29,7 @@ public class SearchServlet extends HttpServlet {
         JSONPost.readPostList();
         List<Post> postList = JSONPost.searchAndGetPostListReverse(request.getParameter("fraza"));
         int currentPage;
-        int maxPost = Integer.parseInt(getServletContext().getInitParameter("maxPost"));
+        int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
         int maxPage = (postList.size() / maxPost);
         if(maxPost * maxPage < postList.size())
             maxPage++;

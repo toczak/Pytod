@@ -18,51 +18,22 @@
 
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
+    <link rel="shortcut icon" href="res/icon.ico?">
 
 </head>
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index">Pytod - pytaj i odpowiadaj</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+<jsp:include page="include/navbar.jsp"/>
 
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="index">Strona główna
-                    </a>
-                </li>
-
-                <c:choose>
-                    <c:when test="${sessionScope.login==null}">
-                        <a class="nav-link" href="zaloguj.jsp">Zaloguj się</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a class="btn btn-secondary" href="wyloguj">Wyloguj</a>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Page Content -->
-<div class="container mb-3">
+<div class="container mt-2 py-5 mb-3">
 
     <div class="row">
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">
+            <h1>
                 Pytanie ${id}:
             </h1>
 
@@ -84,31 +55,31 @@
             </div>
 
             <%--<div class="card mb-4">--%>
-                <%--<div class="card-header">--%>
-                    <%--Użytkownik <b>hetheqwe</b> napisał dnia <i>06/04/2019</i>:--%>
-                <%--</div>--%>
-                <%--<div class="card-body">--%>
-                    <%--<p class="card-text">Użyj mózgu kolego xDD</p>--%>
-                <%--</div>--%>
+            <%--<div class="card-header">--%>
+            <%--Użytkownik <b>hetheqwe</b> napisał dnia <i>06/04/2019</i>:--%>
+            <%--</div>--%>
+            <%--<div class="card-body">--%>
+            <%--<p class="card-text">Użyj mózgu kolego xDD</p>--%>
+            <%--</div>--%>
             <%--</div>--%>
             <c:forEach items="${answerList}" var="list">
-            <div class="card mb-4">
-                <div class="card-header">
-                    Użytkownik <b>${list.author}</b> napisał dnia <i>${list.date}</i>:
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Użytkownik <b>${list.author}</b> napisał dnia <i>${list.date}</i>:
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">${list.text}</p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">${list.text}</p>
-                </div>
-            </div>
             </c:forEach>
             <c:if test="${sessionScope.login!=null}">
                 <div class="card">
                     <div class="card-body">
                         <form method="post" action="dodaj-odpowiedz">
-                        <h5 class="card-title">Odpowiedz</h5>
-                        <textarea class="mb-3 form-control" name="textareaAnswer" rows="3"></textarea>
+                            <h5 class="card-title">Odpowiedz</h5>
+                            <textarea class="mb-3 form-control" name="textareaAnswer" rows="3"></textarea>
                             <input type="hidden" name="id" value="${id}"/>
-                        <input type="submit" class="btn btn-primary float-right" value="Odpowiedz"/>
+                            <input type="submit" class="btn btn-primary float-right" value="Odpowiedz"/>
                         </form>
                     </div>
                 </div>
@@ -118,43 +89,13 @@
         </div>
 
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Search Widget -->
-            <%@ include file = "include/search-widget.jsp" %>
-
-            <div class="card my-4">
-                <h5 class="card-header">Opcje</h5>
-                <div class="card-body">
-                    <c:if test="${sessionScope.login!=null}">
-                        <a class="btn btn-success btn-block" href="zadaj.jsp">Zadaj pytanie</a>
-                        <br/>
-                    </c:if>
-                    <div class="alert alert-dark text-center" role="alert">
-                        Zalogowani użytkownicy:
-                        <span class="badge badge-light">
-                            ${applicationScope['count']}
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <%@ include file="include/panel.jsp" %>
 
     </div>
     <!-- /.row -->
 
 </div>
-<!-- /.container -->
-
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Patryk Potoczak 2019</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<%@ include file="include/footer.jsp" %>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

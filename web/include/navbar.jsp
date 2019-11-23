@@ -1,4 +1,5 @@
-<%--
+<%@ page import="JSON.JSONPost" %>
+<%@ page import="JSON.JSONAnswerPost" %><%--
   Created by IntelliJ IDEA.
   User: Patryk
   Date: 22.11.2019
@@ -19,12 +20,16 @@
             <ul class="navbar-nav mx-auto mt-3">
                 <li class="nav-item">
                     <p class="btn btn-primary btn-sm mr-3">
-                        <small>Łączna liczba pytań: <span class="badge badge-light">4</span></small>
+                        <small>Łączna liczba pytań: <span class="badge badge-light">
+                            <%= JSONPost.getCountOfPosts() %>
+                        </span></small>
                     </p>
                 </li>
                 <li class="nav-item">
                     <p class="btn btn-primary btn-sm">
-                        <small>Łączna liczba odpowiedzi: <span class="badge badge-light">4</span></small>
+                        <small>Łączna liczba odpowiedzi: <span class="badge badge-light">
+                            <%= JSONAnswerPost.getCountOfAnswers() %>
+                        </span></small>
                     </p>
                 </li>
             </ul>

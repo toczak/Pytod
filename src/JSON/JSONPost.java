@@ -17,6 +17,15 @@ import java.util.List;
 public class JSONPost {
 
     static List<Post> postList;
+    private static String realPath;
+
+    public static void setRealPath(String path){
+        realPath = path;
+    }
+
+    public static int getCountOfPosts(){
+        return postList.size();
+    }
 
     public static List<Post> getPostList() {
         return postList;
@@ -49,7 +58,7 @@ public class JSONPost {
     public static boolean readPostList() {
         JSONParser jsonParser = new JSONParser();
         postList = new ArrayList<>();
-        try (FileReader reader = new FileReader("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Posts.json")) {
+        try (FileReader reader = new FileReader(realPath + "Dane\\Posts.json")) {
             Object obj = jsonParser.parse(reader);
 
             JSONArray postListJSON = (JSONArray) obj;
@@ -57,6 +66,8 @@ public class JSONPost {
 
         } catch (IOException e) {
             System.out.println("------------------- Błąd w operacji na pliku!");
+                        e.printStackTrace();
+
             return false;
         } catch (ParseException e) {
             System.out.println("------------------- Błąd w parsowaniu!");
