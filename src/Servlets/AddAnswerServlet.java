@@ -29,6 +29,7 @@ public class AddAnswerServlet extends HttpServlet {
             out.println("<font color=red><h2>Treść odpowiedzi nie może być pusta!</h2></font>");
             requestDispatcher.include(request, response);
         } else {
+            JSONAnswerPost.setRealPath(getServletContext().getRealPath(""));
             JSONAnswerPost.readAnswerPostList();
             answerPostList = JSONAnswerPost.getAnswerPostList();
             AnswerPost answerPost = new AnswerPost();

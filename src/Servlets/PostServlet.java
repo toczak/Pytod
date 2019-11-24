@@ -35,7 +35,7 @@ public class PostServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, int id) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        //Pobranie pytania
+        JSONPost.setRealPath(getServletContext().getRealPath(""));
         JSONPost.readPostList();
         List<Post> postList = JSONPost.getPostList();
         Post post = postList.get(id - 1);

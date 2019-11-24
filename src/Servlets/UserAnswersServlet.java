@@ -1,6 +1,8 @@
 package Servlets;
 
+import JSON.JSONAnswerPost;
 import JSON.JSONPost;
+import Model.AnswerPost;
 import Model.Post;
 
 import javax.servlet.RequestDispatcher;
@@ -13,26 +15,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Servlets.SearchServlet")
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "UserAnswersServlet")
+public class UserAnswersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        JSONPost.setRealPath(getServletContext().getRealPath(""));
-        JSONPost.readPostList();
-        List<Post> postList = JSONPost.searchAndGetPostListReverse(request.getParameter("fraza"));
+        JSONAnswerPost.setRealPath(getServletContext().getRealPath(""));
+        List<AnswerPost> answerPostList = JSONAnswerPost.getAllAnswerstListByUserName(request.getParameter("nick"));
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
-        int maxPage = (postList.size() / maxPost);
-        if(maxPost * maxPage < postList.size())
+        int maxPage = (answerPostList.size() / maxPost);
+        if(maxPost * maxPage < answerPostList.size())
             maxPage++;
         if(request.getParameterMap().containsKey("strona")) {
             if (request.getParameter("strona").isEmpty() || request.getParameter("strona") == null) {
@@ -40,20 +37,20 @@ public class SearchServlet extends HttpServlet {
             } else currentPage = Integer.parseInt(request.getParameter("strona"));
         } else currentPage = 1;
 
-        List<Post> pagePostList = getPostListByPagination(postList,currentPage,maxPost);
+        List<AnswerPost> pagePostList = getPostListByPagination(answerPostList,currentPage,maxPost);
         request.setAttribute("currentPage",currentPage);
         request.setAttribute("maxPage",maxPage);
         request.setAttribute("postList", pagePostList);
-        request.setAttribute("fraza",request.getParameter("fraza"));
-        RequestDispatcher rd = request.getRequestDispatcher("wyszukiwanie.jsp");
+        request.setAttribute("nick",request.getParameter("nick"));
+        RequestDispatcher rd = request.getRequestDispatcher("lista-odpowiedzi.jsp");
         rd.forward(request, response);
     }
 
-    private List<Post> getPostListByPagination(List<Post> postList, int currentPage, int maxPost) {
-        List<Post> list = new ArrayList<>();
+    private List<AnswerPost> getPostListByPagination(List<AnswerPost> answersPostList, int currentPage, int maxPost) {
+        List<AnswerPost> list = new ArrayList<>();
         for (int i = ((currentPage - 1) * maxPost); i < ((currentPage - 1) * maxPost) + maxPost; i++) {
             try {
-                list.add(postList.get(i));
+                list.add(answersPostList.get(i));
             } catch (IndexOutOfBoundsException e) {
 //                e.printStackTrace();
             }

@@ -3,12 +3,9 @@ import Model.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -29,9 +26,10 @@ public class LoginFilter implements Filter {
         if (login.isEmpty() || password.isEmpty()) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("index");
             request.setAttribute("komunikat", "<font color=red><h2>Uzupełnij wszystkie pola!</h2></font>");
-            saveInfoToFile(ip);
+            saveInfoToFile(request.getServletContext().getRealPath(""), ip);
             requestDispatcher.include(request, response);
         } else {
+            JSONUser.setRealPath(request.getServletContext().getRealPath(""));
             if (JSONUser.readUsersList()) {
                 userList = JSONUser.getUserList();
                 if (checkUserAtList(login, password)) {
@@ -40,7 +38,7 @@ public class LoginFilter implements Filter {
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("index");
                     request.setAttribute("komunikat", "<center><font color=red><h2>Błędny login lub hasło!</h2></font></center>");
-                    saveInfoToFile(ip);
+                    saveInfoToFile(request.getServletContext().getRealPath(""), ip);
                     rd.include(request, response);
                 }
             }
@@ -55,8 +53,8 @@ public class LoginFilter implements Filter {
         return false;
     }
 
-    private void saveInfoToFile(String ip) throws IOException {
-        File file = new File("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Logs.txt");
+    private void saveInfoToFile(String realPath, String ip) throws IOException {
+        File file = new File(realPath + "Dane\\Logs.txt");
         FileWriter fr = new FileWriter(file, true);
         fr.write(new Date().toString() + ": Nieudana proba logowania. IP:" + ip + "\n");
         fr.close();

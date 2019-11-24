@@ -18,7 +18,7 @@
         </listener-class>
     </listener>
     <session-config>
-        <session-timeout>1</session-timeout>
+        <session-timeout>10</session-timeout>
     </session-config>
     <filter>
         <filter-name>loginFilter</filter-name>
@@ -63,6 +63,14 @@
         <servlet-name>searchServlet</servlet-name>
         <servlet-class>Servlets.SearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>myAnswersServlet</servlet-name>
+        <servlet-class>Servlets.UserAnswersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>myPostsServlet</servlet-name>
+        <servlet-class>Servlets.UserPostsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/rejestracja</url-pattern>
@@ -94,6 +102,14 @@
     <servlet-mapping>
         <servlet-name>searchServlet</servlet-name>
         <url-pattern>/szukaj</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>myAnswersServlet</servlet-name>
+        <url-pattern>/lista-odpowiedzi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>myPostsServlet</servlet-name>
+        <url-pattern>/lista-pytan</url-pattern>
     </servlet-mapping>
 
 

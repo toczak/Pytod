@@ -67,7 +67,6 @@ public class LoginListener implements ServletContextListener,
             context.setAttribute("count",
                     (int) context.getAttribute("count") + 1);
         }
-
     }
 
     public void attributeRemoved(HttpSessionBindingEvent sbe) {

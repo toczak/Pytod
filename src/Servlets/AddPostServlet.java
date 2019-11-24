@@ -36,6 +36,7 @@ public class AddPostServlet extends HttpServlet {
             out.println("<font color=red><h2>Treść pytania nie może być pusta!</h2></font>");
             requestDispatcher.include(request, response);
         } else {
+            JSONPost.setRealPath(getServletContext().getRealPath(""));
             JSONPost.readPostList();
             postList = JSONPost.getPostList();
             RequestDispatcher rd = request.getRequestDispatcher("index");

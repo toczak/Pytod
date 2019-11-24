@@ -13,22 +13,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Servlets.SearchServlet")
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "UserPostsServlet")
+public class UserPostsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         JSONPost.setRealPath(getServletContext().getRealPath(""));
         JSONPost.readPostList();
-        List<Post> postList = JSONPost.searchAndGetPostListReverse(request.getParameter("fraza"));
+        List<Post> postList = JSONPost.getAllPostListByUserName(request.getParameter("nick"));
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
         int maxPage = (postList.size() / maxPost);
@@ -44,8 +40,8 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("currentPage",currentPage);
         request.setAttribute("maxPage",maxPage);
         request.setAttribute("postList", pagePostList);
-        request.setAttribute("fraza",request.getParameter("fraza"));
-        RequestDispatcher rd = request.getRequestDispatcher("wyszukiwanie.jsp");
+        request.setAttribute("nick",request.getParameter("nick"));
+        RequestDispatcher rd = request.getRequestDispatcher("lista-pytan.jsp");
         rd.forward(request, response);
     }
 

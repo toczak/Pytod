@@ -95,6 +95,7 @@
     <!-- /.row -->
 
 </div>
+<footer>
 <%@ include file="include/footer.jsp" %>
 
 <!-- Bootstrap core JavaScript -->

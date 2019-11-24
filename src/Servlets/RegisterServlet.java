@@ -61,10 +61,9 @@ public class RegisterServlet extends HttpServlet {
             if (!correctValue) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("rejestracja.jsp");
                 out.println("<font color=red><h1>Popraw wskazane pola!</h1></font><br/>");
-                System.out.println("popraw pole");
-
                 requestDispatcher.include(request, response);
             } else {
+                JSONUser.setRealPath(getServletContext().getRealPath(""));
                 if (JSONUser.readUsersList()) {
                     userList = JSONUser.getUserList();
                     if (!checkUserAtList(name, email)) {

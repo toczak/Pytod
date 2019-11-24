@@ -17,7 +17,7 @@ import java.util.List;
 public class JSONAnswerPost {
 
     static List<AnswerPost> answerPostList;
-    private static String realPath;
+    private static String realPath = null;
 
     public static void setRealPath(String path) {
         realPath = path;
@@ -38,6 +38,18 @@ public class JSONAnswerPost {
                 list.add(answerPost);
         }
         return list;
+    }
+
+    public static List<AnswerPost> getAllAnswerstListByUserName(String searchText) {
+        readAnswerPostList();
+        List<AnswerPost> answersListNew = new ArrayList<>();
+        for (int i = answerPostList.size() - 1; i >= 0; i--) {
+            String author = answerPostList.get(i).getAuthor();
+            if (author.matches(".*\\b" + searchText + "\\b.*")) {
+                answersListNew.add(answerPostList.get(i));
+            }
+        }
+        return answersListNew;
     }
 
     public static int getCountAnswerByPostId(int id) {
@@ -95,7 +107,7 @@ public class JSONAnswerPost {
             answerPostListJSON.add(postObject);
         }
 
-        try (FileWriter file = new FileWriter("C:\\Users\\tocza\\Desktop\\Java PWSZ\\Lista5\\pytod\\Dane\\Answers.json")) {
+        try (FileWriter file = new FileWriter(realPath + "Dane\\Answers.json")) {
             file.write(answerPostListJSON.toJSONString());
             file.flush();
 

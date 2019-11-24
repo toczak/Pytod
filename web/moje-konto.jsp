@@ -1,6 +1,15 @@
+<%@ page import="Model.User" %>
+<%@ page import="JSON.JSONUser" %><%--
+  Created by IntelliJ IDEA.
+  User: Patryk
+  Date: 24.11.2019
+  Time: 11:48
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${currentPage==null}">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:if test="${sessionScope.login==null}">
     <c:redirect url="index"/>
 </c:if>
 <!DOCTYPE html>
@@ -29,14 +38,28 @@
 <jsp:include page="include/navbar.jsp"/>
 
 <div class="container mt-2 py-5">
-    ${komunikat}
 
     <div class="row">
-        <jsp:include page="include/main-content.jsp"/>
-        <jsp:include page="include/panel.jsp"/>
+
+
+        <div class="col-md-8">
+            <% User user = JSONUser.getUserInfo((String) session.getAttribute("login")); %>
+            <ul class="list-group">
+                <li class="list-group-item active"> Użytkownik: <%=user.getUsername()%>
+                </li>
+                <li class="list-group-item">E-mail: <%=user.getEmail()%>
+                </li>
+                <li class="list-group-item">Hasło: <%=user.getPassword()%>
+                </li>
+            </ul>
+        </div>
+
+        <%@ include file="include/panel.jsp" %>
+
     </div>
 </div>
-<jsp:include page="include/footer.jsp"/>
+
+<%@ include file="include/footer.jsp" %>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
@@ -45,3 +68,4 @@
 </body>
 
 </html>
+

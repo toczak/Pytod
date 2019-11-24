@@ -18,6 +18,7 @@ public class JSONPost {
 
     static List<Post> postList;
     private static String realPath;
+    private static int maxNewPost;
 
     public static void setRealPath(String path){
         realPath = path;
@@ -36,6 +37,18 @@ public class JSONPost {
         List<Post> postListNew = new ArrayList<>();
         for (int i = postList.size() - 1; i >= 0; i--) {
             postListNew.add(postList.get(i));
+        }
+        return postListNew;
+    }
+
+    public static List<Post> getAllPostListByUserName(String searchText) {
+        readPostList();
+        List<Post> postListNew = new ArrayList<>();
+        for (int i = postList.size() - 1; i >= 0; i--) {
+            String author = postList.get(i).getAuthor();
+            if (author.matches(".*\\b" + searchText + "\\b.*")) {
+                postListNew.add(postList.get(i));
+            }
         }
         return postListNew;
     }
@@ -85,9 +98,8 @@ public class JSONPost {
         post.setTextQuestion((String) postObject.get("textQuestion"));
         post.setAuthor((String) postObject.get("author"));
         post.setDate((String) postObject.get("date"));
+        JSONAnswerPost.setRealPath(realPath);
         post.setCountAnswers(JSONAnswerPost.getCountAnswerByPostId(post.getId()));
-
-//        post.setCountAnswers(((Long) postObject.get("countAnswers")).intValue());
         postList.add(post);
     }
 
@@ -106,12 +118,30 @@ public class JSONPost {
             postListJSON.add(postObject);
         }
 
-        try (FileWriter file = new FileWriter("Dane/Posts.json")) {
+        try (FileWriter file = new FileWriter(realPath + "Dane\\Posts.json")) {
             file.write(postListJSON.toJSONString());
             file.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setMaxNewPostOnPanel(int maxNewPost) {
+        JSONPost.maxNewPost = maxNewPost;
+    }
+
+    public static List<Post> getNewPostList() {
+        readPostList();
+        List<Post> postListNew = new ArrayList<>();
+        int i = 1;
+        do{
+            postListNew.add(postList.get(postList.size()-i));
+            i++;
+        }while(i<=maxNewPost);
+//        for (int i = postList.size() - 1; i >= 0; i--) {
+//            postListNew.add(postList.get(i));
+//        }
+        return postListNew;
     }
 }

@@ -25,6 +25,19 @@ public class JSONUser {
         return userList;
     }
 
+    public static User getUserInfo(String searchText) {
+        readUsersList();
+        User userNew = new User();
+        for (User user : userList) {
+            String author = user.getUsername();
+            if (searchText.equals(author)) {
+                userNew = user;
+                break;
+            }
+        }
+        return userNew;
+    }
+
     public static boolean readUsersList() {
         JSONParser jsonParser = new JSONParser();
         userList = new ArrayList<>();
@@ -32,10 +45,6 @@ public class JSONUser {
             Object obj = jsonParser.parse(reader);
 
             JSONArray userListJSON = (JSONArray) obj;
-//            System.out.println(userListJSON);
-//            for(Object userObject : userListJSON){
-//                parseUserObject((JSONObject) userObject);
-//            }
             userListJSON.forEach(user -> parseUserObject((JSONObject) user));
 
         } catch (IOException e) {
@@ -73,7 +82,7 @@ public class JSONUser {
             userListJSON.add(userObject);
         }
 
-        try (FileWriter file = new FileWriter("Dane/Users.json")) {
+        try (FileWriter file = new FileWriter(realPath + "Dane\\Users.json")) {
             file.write(userListJSON.toJSONString());
             file.flush();
 

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<div class="card my-4">
+<div class="card mt-2">
     <h5 class="card-header">Znajdź pytanie</h5>
     <div class="card-body">
         <form method="get" action="szukaj">
@@ -19,10 +19,8 @@
                 <input type="submit" class="btn btn-secondary" value="Szukaj"/>
                 </span>
             </div>
-            <a class="h6 mt-1" href="wyszukiwanie.jsp">Wyszukiwanie zaawansowane...</a>
-
+            <a class="h6 mt-1" href="#">Wyszukiwanie zaawansowane...</a>
         </form>
-
     </div>
 </div>
 </html>
