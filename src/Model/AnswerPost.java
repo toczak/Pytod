@@ -3,6 +3,7 @@ package Model;
 import java.util.Date;
 
 public class AnswerPost {
+    private int id;
     private int idPost;
     private String author;
     private String text;
@@ -17,6 +18,14 @@ public class AnswerPost {
 
     public AnswerPost() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdPost() {

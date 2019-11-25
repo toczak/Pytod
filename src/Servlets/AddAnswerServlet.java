@@ -35,6 +35,7 @@ public class AddAnswerServlet extends HttpServlet {
             AnswerPost answerPost = new AnswerPost();
             answerPost.setAuthor((String) request.getSession().getAttribute("login"));
             int id = Integer.parseInt(request.getParameter("id"));
+            answerPost.setId(answerPostList.size() + 1);
             answerPost.setIdPost(id);
             answerPost.setText(answerText);
             Date date = new Date();

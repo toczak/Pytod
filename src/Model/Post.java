@@ -10,7 +10,6 @@ public class Post {
     private String author;
     private String date;
     private int countAnswers;
-//    List<AnswerPost> answerPosts = new ArrayList<>();
 
     public int getId() {
         return id;

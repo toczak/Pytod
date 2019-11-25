@@ -13,3 +13,8 @@
 
 //todo zrób wyszukiwanie zaawansowane
 //todo popraw napis przy rejestracji - nieudanej (nachodzi na navbar)
+//todo zrób przekazanie parametrów przez znacznik id pytania, bo nick i ocena beda szly postem???? moze wszystko postem?
+//todo zrób wyliczanie średniej i wyświetlanie jej
+//todo zrobić, że nie może oceniać wiecej niz raz
+//todo zabezpieczyć przed ocenianiem czegoś co już jest ocenione
+//todo czasami tylko 1 pytanie sie wyswietla w panelu na prawo w pytaniu

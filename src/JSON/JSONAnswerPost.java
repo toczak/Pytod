@@ -23,7 +23,7 @@ public class JSONAnswerPost {
         realPath = path;
     }
 
-    public static int getCountOfAnswers(){
+    public static int getCountOfAnswers() {
         return answerPostList.size();
     }
 
@@ -86,6 +86,7 @@ public class JSONAnswerPost {
     static void parseAnswerPostObject(JSONObject postJSON) {
         JSONObject postObject = (JSONObject) postJSON.get("answer");
         AnswerPost post = new AnswerPost();
+        post.setId(((Long) postObject.get("id")).intValue());
         post.setIdPost(((Long) postObject.get("idPost")).intValue());
         post.setText((String) postObject.get("text"));
         post.setAuthor((String) postObject.get("author"));
@@ -97,6 +98,7 @@ public class JSONAnswerPost {
         JSONArray answerPostListJSON = new JSONArray();
         for (AnswerPost post : answerPostList) {
             JSONObject postJSON = new JSONObject();
+            postJSON.put("id", post.getId());
             postJSON.put("idPost", post.getIdPost());
             postJSON.put("text", post.getText());
             postJSON.put("author", post.getAuthor());

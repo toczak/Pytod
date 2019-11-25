@@ -12,6 +12,22 @@
 <html>
 <div class="col-md-4">
 
+    <div class="card my-4">
+        <h5 class="card-header">Opcje</h5>
+        <div class="card-body">
+            <c:if test="${sessionScope.login!=null}">
+                <a class="btn btn-success btn-block" href="zadaj.jsp">Zadaj pytanie</a>
+                <br/>
+            </c:if>
+            <div class="alert alert-dark text-center" role="alert">
+                Zalogowani użytkownicy:
+                <span class="badge badge-light">
+                    ${applicationScope['count']}
+                </span>
+            </div>
+        </div>
+    </div>
+
     <%
         List<Post> newPostList = JSONPost.getNewPostList();
         for (Post post : newPostList) {
@@ -33,23 +49,6 @@
     <%
         }
     %>
-
-
-    <div class="card my-4">
-        <h5 class="card-header">Opcje</h5>
-        <div class="card-body">
-            <c:if test="${sessionScope.login!=null}">
-                <a class="btn btn-success btn-block" href="zadaj.jsp">Zadaj pytanie</a>
-                <br/>
-            </c:if>
-            <div class="alert alert-dark text-center" role="alert">
-                Zalogowani użytkownicy:
-                <span class="badge badge-light">
-                    ${applicationScope['count']}
-                </span>
-            </div>
-        </div>
-    </div>
 
     <%@ include file="search-widget.jsp" %>
 

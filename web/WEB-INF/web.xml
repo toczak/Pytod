@@ -71,6 +71,10 @@
         <servlet-name>myPostsServlet</servlet-name>
         <servlet-class>Servlets.UserPostsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>gradeAnswerServlet</servlet-name>
+        <servlet-class>Servlets.GradeAnswerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/rejestracja</url-pattern>
@@ -111,6 +115,16 @@
         <servlet-name>myPostsServlet</servlet-name>
         <url-pattern>/lista-pytan</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gradeAnswerServlet</servlet-name>
+        <url-pattern>/ocen</url-pattern>
+    </servlet-mapping>
 
 
+    <!--<jsp-config>-->
+    <!--<taglib>-->
+        <!--<taglib-uri></taglib-uri>-->
+        <!--<taglib-location></taglib-location>-->
+    <!--</taglib>-->
+<!--</jsp-config>-->
 </web-app>

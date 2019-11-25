@@ -75,14 +75,14 @@
                             <li class="page-item <c:if test="${currentPage==1}">disabled</c:if>">
 
                                 <a class="page-link"
-                                   href="lista-odpowiedzi?nick=${fraza}&strona=${currentPage-1}">Poprzednia</a>
+                                   href="lista-odpowiedzi?nick=${nick}&strona=${currentPage-1}">Poprzednia</a>
                             </li>
                             <li class="page-item active"><span class="page-link">
                                     ${currentPage}
                             </span></li>
                             <li class="page-item <c:if test="${currentPage eq maxPage}">disabled</c:if>">
                                 <a class="page-link"
-                                   href="lista-odpowiedzi?nick=${fraza}&strona=${currentPage+1}">Następna</a>
+                                   href="lista-odpowiedzi?nick=${nick}&strona=${currentPage+1}">Następna</a>
                             </li>
                         </ul>
                     </nav>
