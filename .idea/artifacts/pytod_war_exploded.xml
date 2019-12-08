@@ -11,6 +11,8 @@
           <element id="library" level="project" name="com.googlecode.json-simple:json-simple:1.1.1" />
           <element id="library" level="application" name="json-simple-1.1.1" />
           <element id="library" level="application" name="javax.servlet.jsp.jstl:jstl-api:1.2" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:5.1.36" />
+          <element id="library" level="application" name="mysql:mysql-connector-java:5.1.36" />
         </element>
       </element>
     </root>

@@ -1,4 +1,5 @@
 package Servlets;
+
 import JSON.JSONAnswerPost;
 import JSON.JSONPost;
 import JSON.JSONUser;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,9 @@ public class IndexPostServlet extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        JSONPost.setRealPath(getServletContext().getRealPath(""));
-        JSONPost.readPostList();
-        List<Post> postList = JSONPost.getPostList();
+//        JSONPost.setRealPath(getServletContext().getRealPath(""));
+//        JSONPost.readPostList();
+        List<Post> postList = getPostList();
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
         int maxPage = (postList.size() / maxPost);
@@ -63,11 +65,28 @@ public class IndexPostServlet extends HttpServlet {
             try {
                 list.add(postList.get(i));
             } catch (IndexOutOfBoundsException e) {
-//                System.out.println("Blad w indexpostservlet");
-//                System.out.println(i + " " + currentPage + " " + maxPost);
-
+                e.printStackTrace();
             }
+        }
+        return list;
+    }
 
+
+    private List<Post> getPostList() {
+        List<Post> list = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod", "root", "");
+            Statement statement = conn.createStatement();
+            String sql = "SELECT * FROM post;";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                list.add(new Post(resultSet.getInt("id"),resultSet.getString("text"),resultSet.getInt("id_user"),resultSet.getTimestamp("date")));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return list;
     }

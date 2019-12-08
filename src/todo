@@ -1,20 +1,18 @@
 //todo zrób paginacje - czesc zrobione, ale bez numerow - blad w IndexOutOfBounds
 //todo poprawić usuwanie sesji - wywlouje 4 razy? ale jest ok
-
-//todo 2. Dodaj możliwość oceny udzielanych odpowiedzi. Wymagania:
-//todo - oceniać mogą tylko zalogowani użytkownicy,
-//todo - użytkownik może ocenić dane pytanie tylko i wyłącznie 1 raz (dla uproszczenia można
-//todo przyjąć, że informacja o tym przechowywana jest w długoterminowym ciasteczku, ale można
-//todo wykorzystać dowolną metodykę w tym zapis do plików odpowiednich informacji),
-//todo - komponent oceny (należy wykonać własny znacznik zgodnie z informacjami
-//todo przedstawionymi na wykładzie) ma możliwość wyboru wartości z przedziału 0 – 10,
-//todo - w miejscu wyświetlania odpowiedzi informacja o jego ocenie ma się pojawiać na samym
-//todo dole odpowiedzi. Ocena pytania ma być średnią wszystkich ocen.
-
 //todo zrób wyszukiwanie zaawansowane
-//todo popraw napis przy rejestracji - nieudanej (nachodzi na navbar)
-//todo zrób przekazanie parametrów przez znacznik id pytania, bo nick i ocena beda szly postem???? moze wszystko postem?
-//todo zrób wyliczanie średniej i wyświetlanie jej
-//todo zrobić, że nie może oceniać wiecej niz raz
-//todo zabezpieczyć przed ocenianiem czegoś co już jest ocenione
-//todo czasami tylko 1 pytanie sie wyswietla w panelu na prawo w pytaniu
+
+//todo dorobić wszędzie odczyt z bazy danych i zapis tez
+//todo zrobić pobieranie rekordów z bazy przyspieszone (nie wybierac z listy tylko z bazy BETWEEN)
+
+//todo 1. Wszystkie dane aplikacji mają być przechowywane w bazie danych. Wykorzystaj
+//todo bibliotekę JSTL.
+//todo 2. Dodaj rolę administratora do aplikacji. Administrator ma mieć możliwość:
+//todo - usuwania całych postów,
+//todo - usuwania odpowiedzi,
+//todo - aktualizacji treści odpowiedzi.
+
+//todo popraw zeby sie wyswietlalo brak oceny jesli nei ma ocen
+//todo popraw sesje
+
+

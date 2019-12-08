@@ -35,22 +35,22 @@ public class PostServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response, int id) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        JSONPost.setRealPath(getServletContext().getRealPath(""));
-        JSONPost.readPostList();
-        List<Post> postList = JSONPost.getPostList();
-        Post post = postList.get(id - 1);
+//        JSONPost.setRealPath(getServletContext().getRealPath(""));
+//        JSONPost.readPostList();
+//        List<Post> postList = JSONPost.getPostList();
+//        Post post = postList.get(id - 1);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("pytanie.jsp");
-        request.setAttribute("id", post.getId());
-        request.setAttribute("author", post.getAuthor());
-        request.setAttribute("question", post.getTextQuestion());
-        request.setAttribute("date", post.getDate());
+        request.setAttribute("id", id);
+//        request.setAttribute("author", post.getAuthor());
+//        request.setAttribute("question", post.getTextQuestion());
+//        request.setAttribute("date", post.getDate());
         request.setAttribute("color", getBackgroundColorByBrowser(request.getHeader("user-agent")));
 
 
         //Pobranie wszystkich odpowiedzi
-        JSONAnswerPost.readAnswerPostList();
-        List<AnswerPost> answerPostList = JSONAnswerPost.getAnswerPostListWithPostId(id);
-        request.setAttribute("answerList", answerPostList);
+//        JSONAnswerPost.readAnswerPostList();
+//        List<AnswerPost> answerPostList = JSONAnswerPost.getAnswerPostListWithPostId(id);
+//        request.setAttribute("answerList", answerPostList);
         requestDispatcher.include(request, response);
     }
 

@@ -8,6 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
+
 <html>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top mb-4">
     <div class="container">
@@ -20,15 +23,23 @@
             <ul class="navbar-nav mx-auto mt-3">
                 <li class="nav-item">
                     <p class="btn btn-primary btn-sm mr-3">
+                        <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+                                           url="jdbc:mysql://localhost:3306/pytod" user="root" password=""/>
                         <small>Łączna liczba pytań: <span class="badge badge-light">
-                            <%= JSONPost.getCountOfPosts() %>
+                            <sql:query dataSource="${db}" var="table">
+                                SELECT count(*) FROM post;
+                            </sql:query>
+                            <c:out value="${table.rowsByIndex[0][0]}"/>
                         </span></small>
                     </p>
                 </li>
                 <li class="nav-item">
                     <p class="btn btn-primary btn-sm">
                         <small>Łączna liczba odpowiedzi: <span class="badge badge-light">
-                            <%= JSONAnswerPost.getCountOfAnswers() %>
+                            <sql:query dataSource="${db}" var="table">
+                                SELECT count(id) FROM answer_post;
+                            </sql:query>
+                            <c:out value="${table.rowsByIndex[0][0]}"/>
                         </span></small>
                     </p>
                 </li>

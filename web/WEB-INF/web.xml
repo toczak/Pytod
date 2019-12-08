@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
     <context-param>
         <param-name>MaxAllPost</param-name>
         <param-value>3</param-value>
@@ -28,6 +27,7 @@
         <filter-name>loginFilter</filter-name>
         <url-pattern>/logowanie</url-pattern>
     </filter-mapping>
+
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
@@ -120,7 +120,12 @@
         <url-pattern>/ocen</url-pattern>
     </servlet-mapping>
 
-
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
     <!--<jsp-config>-->
     <!--<taglib>-->
         <!--<taglib-uri></taglib-uri>-->

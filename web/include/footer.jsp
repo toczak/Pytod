@@ -14,8 +14,8 @@
         <c:if test="${sessionScope.login!=null}">
             <div class="d-flex justify-content-center">
                 <a class="mr-4" href="moje-konto.jsp">Moje konto</a>
-                <a class="mr-4" href="lista-pytan?nick=${sessionScope.login}">Moje pytania</a>
-                <a href="lista-odpowiedzi?nick=${sessionScope.login}">Moje odpowiedzi</a>
+                <a class="mr-4" href="lista-pytan?id_user=${sessionScope.login}">Moje pytania</a>
+                <a href="lista-odpowiedzi?id_user=${sessionScope.login}">Moje odpowiedzi</a>
             </div>
             <hr/>
         </c:if>

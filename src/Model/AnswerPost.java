@@ -4,44 +4,33 @@ import java.util.Date;
 
 public class AnswerPost {
     private int id;
-    private int idPost;
-    private String author;
+    private int id_post;
+    private int id_user;
     private String text;
-    private String date;
+    private Date date;
 
-    public AnswerPost(int idPost, String author, String text, String date) {
-        this.idPost = idPost;
-        this.author = author;
+    public AnswerPost(int id, int id_post, int id_user, String text, Date date) {
+        this.id = id;
+        this.id_post = id_post;
+        this.id_user = id_user;
         this.text = text;
         this.date = date;
     }
 
-    public AnswerPost() {
-
+    public int getId_post() {
+        return id_post;
     }
 
-    public int getId() {
-        return id;
+    public void setId_post(int id_post) {
+        this.id_post = id_post;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId_user() {
+        return id_user;
     }
 
-    public int getIdPost() {
-        return idPost;
-    }
-
-    public void setIdPost(int idPost) {
-        this.idPost = idPost;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public String getText() {
@@ -52,11 +41,11 @@ public class AnswerPost {
         this.text = text;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Date;
 import java.util.List;
 
@@ -29,11 +30,14 @@ public class LoginFilter implements Filter {
             saveInfoToFile(request.getServletContext().getRealPath(""), ip);
             requestDispatcher.include(request, response);
         } else {
-            JSONUser.setRealPath(request.getServletContext().getRealPath(""));
-            if (JSONUser.readUsersList()) {
-                userList = JSONUser.getUserList();
-                if (checkUserAtList(login, password)) {
-                    request.setAttribute("login",login);
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod","root","");
+                Statement statement = conn.createStatement();
+                String sql = "SELECT id FROM user WHERE (email='"+login+"' OR username='"+login+"') AND password='"+password+"'";
+                ResultSet resultSet = statement.executeQuery(sql);
+                if (resultSet.isBeforeFirst() ) {
+                    resultSet.next();
+                    request.setAttribute("login",resultSet.getInt("id"));
                     chain.doFilter(request, response);
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("index");
@@ -41,7 +45,23 @@ public class LoginFilter implements Filter {
                     saveInfoToFile(request.getServletContext().getRealPath(""), ip);
                     rd.include(request, response);
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+
+//            JSONUser.setRealPath(request.getServletContext().getRealPath(""));
+//            if (JSONUser.readUsersList()) {
+//                userList = JSONUser.getUserList();
+//                if (checkUserAtList(login, password)) {
+//                    request.setAttribute("login",login);
+//                    chain.doFilter(request, response);
+//                } else {
+//                    RequestDispatcher rd = request.getRequestDispatcher("index");
+//                    request.setAttribute("komunikat", "<center><font color=red><h2>Błędny login lub hasło!</h2></font></center>");
+//                    saveInfoToFile(request.getServletContext().getRealPath(""), ip);
+//                    rd.include(request, response);
+//                }
+//            }
         }
     }
 

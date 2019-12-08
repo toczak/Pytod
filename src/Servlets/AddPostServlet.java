@@ -40,14 +40,14 @@ public class AddPostServlet extends HttpServlet {
             JSONPost.readPostList();
             postList = JSONPost.getPostList();
             RequestDispatcher rd = request.getRequestDispatcher("index");
-            Post post = new Post();
-            post.setAuthor((String) request.getSession().getAttribute("login"));
-            post.setId(postList.size() + 1);
-            post.setTextQuestion(question);
-            Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            post.setDate(formatter.format(date));
-            postList.add(post);
+//            Post post = new Post();
+//            post.setAuthor((String) request.getSession().getAttribute("login"));
+//            post.setId(postList.size() + 1);
+//            post.setTextQuestion(question);
+//            Date date = new Date();
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+//            post.setDate(formatter.format(date));
+//            postList.add(post);
             JSONPost.savePostListToJSONFile(postList);
             rd.include(request, response);
         }

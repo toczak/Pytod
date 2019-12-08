@@ -7,9 +7,15 @@ import java.util.List;
 public class Post {
     private int id;
     private String textQuestion;
-    private String author;
-    private String date;
-    private int countAnswers;
+    private int author;
+    private Date date;
+
+    public Post(int id, String textQuestion, int author, Date date) {
+        this.id = id;
+        this.textQuestion = textQuestion;
+        this.author = author;
+        this.date = date;
+    }
 
     public int getId() {
         return id;
@@ -27,29 +33,22 @@ public class Post {
         this.textQuestion = textQuestion;
     }
 
-    public String getAuthor() {
+    public int getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(int author) {
         this.author = author;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public int getCountAnswers() {
-        return countAnswers;
-    }
-
-    public void setCountAnswers(int countAnswers) {
-        this.countAnswers = countAnswers;
-    }
 
 //    public List<AnswerPost> getAnswerPosts() {
 //        return answerPosts;

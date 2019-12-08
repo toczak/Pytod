@@ -44,7 +44,5 @@
     <input class="btn btn-lg btn-primary btn-block" value="Zarejestruj" type="submit"/>
 </form>
 
-<%--<%@ include file="include/footer.jsp" %>--%>
-
 </body>
 </html>

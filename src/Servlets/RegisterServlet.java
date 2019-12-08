@@ -1,6 +1,7 @@
 package Servlets;
 
 import JSON.JSONUser;
+import Model.Post;
 import Model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -11,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
 @WebServlet(name = "Servlets.RegisterServlet")
 public class RegisterServlet extends HttpServlet {
-    List<User> userList;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("name", name);
             if (!Pattern.matches("[\\w]{2,20}", name)) {
                 correctValue = false;
-                request.setAttribute("resultName", "<font color=red><i>Podany nick nie jest poprawne!</i></font><br/>");
+                request.setAttribute("resultName", "<font color=red><i>Podany nick nie jest poprawny!</i></font><br/>");
             }
 
             request.setAttribute("email", email);
@@ -63,33 +63,39 @@ public class RegisterServlet extends HttpServlet {
                 out.println("<font color=red><h1>Popraw wskazane pola!</h1></font><br/>");
                 requestDispatcher.include(request, response);
             } else {
-                JSONUser.setRealPath(getServletContext().getRealPath(""));
-                if (JSONUser.readUsersList()) {
-                    userList = JSONUser.getUserList();
-                    if (!checkUserAtList(name, email)) {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+                    if (isUserInDatabase(conn, name, email)) {
                         System.out.println("Jest już dany uzytkownik!");
                         RequestDispatcher requestDispatcher = request.getRequestDispatcher("rejestracja.jsp");
-                        out.println("<font color=red><h2>Użytkownik o podanym loginie/mailu już istnieje!</h2></font>");
+                        out.println("<div style='margin-top: 60px'><font color=red><h2>Użytkownik o podanym loginie/mailu już istnieje!</h2></font></div>");
                         requestDispatcher.include(request, response);
                         return;
                     }
-                } else userList = new ArrayList<>();
-                RequestDispatcher rd = request.getRequestDispatcher("index");
-                request.setAttribute("komunikat","<center><font color='green'><h2>Poprawnie się zarejestrowałeś! Możesz się zalogować.</h2></font></center>");
-                User user = new User(name, email, password);
-                userList.add(user);
-                JSONUser.saveUserListToJSONFile(userList);
-                rd.forward(request, response);
+                    RequestDispatcher rd = request.getRequestDispatcher("index");
+                    request.setAttribute("komunikat", "<center><font color='green'><h2>Poprawnie się zarejestrowałeś! Możesz się zalogować.</h2></font></center>");
+                    PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO user(username,email,password,id_type_user) VALUES(?,?,?,?)");
+                    preparedStatement.setString(1, name);
+                    preparedStatement.setString(2, email);
+                    preparedStatement.setString(3, password);
+                    preparedStatement.setInt(4, 1);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    conn.close();
+                    rd.forward(request, response);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    private boolean checkUserAtList(String name, String email) {
-        for (User user : userList) {
-            if (name.equalsIgnoreCase(user.getUsername()) || email.equals(user.getEmail()))
-                return false;
-        }
-        return true;
+    private boolean isUserInDatabase(Connection conn, String name, String email) throws SQLException {
+        Statement statement = conn.createStatement();
+        String sql = "SELECT id FROM user WHERE username='" + name + "' OR email='" + email+"'";
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet.isBeforeFirst();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

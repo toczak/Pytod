@@ -9,6 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <c:if test="${sessionScope.login==null}">
     <c:redirect url="index"/>
 </c:if>
@@ -43,16 +45,29 @@
 
 
         <div class="col-md-8">
-            <% User user = JSONUser.getUserInfo((String) session.getAttribute("login")); %>
+            <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+                               url="jdbc:mysql://localhost:3306/pytod" user="root" password=""/>
+            <sql:query dataSource="${db}" var="table">
+                SELECT * FROM user WHERE id=${sessionScope.login};
+            </sql:query>
+
+
+            <c:forEach var="user" items="${table.rows}">
+            <sql:query dataSource="${db}" var="table2">
+                SELECT name FROM type_user WHERE id=${user.id_type_user};
+            </sql:query>
             <ul class="list-group">
-                <li class="list-group-item active"> Użytkownik: <%=user.getUsername()%>
+                <li class="list-group-item active"> Użytkownik: ${user.username}
                 </li>
-                <li class="list-group-item">E-mail: <%=user.getEmail()%>
+                <li class="list-group-item">E-mail: ${user.email}
                 </li>
-                <li class="list-group-item">Hasło: <%=user.getPassword()%>
+                <li class="list-group-item">Hasło: ${user.password}
+                </li>
+                <li class="list-group-item">Typ konta: <c:out value="${table2.rowsByIndex[0][0]}"/>
                 </li>
             </ul>
         </div>
+        </c:forEach>
 
         <%@ include file="include/panel.jsp" %>
 
