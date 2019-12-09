@@ -48,24 +48,21 @@
             <c:if test="${pageContext.request.method=='POST'}">
                 <c:choose>
                     <c:when test="${not empty param.textareaQuestion}">
-                        <jsp:useBean id="nowDate" class="java.util.Date"/>
                         <c:catch var="exception">
                             <sql:update dataSource="${db}" var="insert">
-                                INSERT INTO post(id_user,text,date) VALUES (?, ?, ?)
-                                <sql:param value="${sessionScope.login}" />
+                                UPDATE answer_post SET text=? WHERE id='${param.id_answer}'
                                 <sql:param value="${param.textareaQuestion}" />
-                                <sql:param value="${nowDate}" />
                             </sql:update>
                             <c:if test="${insert>=1}">
-                                <c:redirect url="index.jsp"/>
+                                <c:redirect url="pytanie?id=${param.id_post}"/>
                             </c:if>
                         </c:catch>
                         <c:if test="${exception!=null}">
-                            <c:out value="Błąd podczas dodawania pytania." />
+                            <c:out value="Błąd podczas edytowania odpowiedzi." />
                         </c:if>
                     </c:when>
                     <c:otherwise>
-                        <font color=red><h2>Treść pytania nie może być pusta!</h2></font>
+                        <font color=red><h2>Treść nie może być pusta!</h2></font>
                     </c:otherwise>
                 </c:choose>
 
@@ -74,9 +71,12 @@
                 <div class="card-body">
                     <form method="post">
                         <%--<form method="post" action="dodaj-post">--%>
-                    <h5 class="card-title">Wpisz swoje pytanie:</h5>
-                    <textarea class="mb-3 form-control" name="textareaQuestion" rows="3"></textarea>
-                    <input type="submit" class="btn btn-primary float-right" value="Zadaj"/>
+                            <sql:query dataSource="${db}" var="post2">
+                                SELECT text FROM answer_post WHERE id=${param.id_answer};
+                            </sql:query>
+                    <h5 class="card-title">Treść edytowanej odpowiedzi:</h5>
+                    <textarea class="mb-3 form-control" name="textareaQuestion" rows="3"><c:out value="${post2.rowsByIndex[0][0]}"/></textarea>
+                    <input type="submit" class="btn btn-primary float-right" value="Edytuj"/>
                     </form>
                 </div>
             </div>

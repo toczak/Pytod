@@ -2,17 +2,12 @@
 //todo poprawić usuwanie sesji - wywlouje 4 razy? ale jest ok
 //todo zrób wyszukiwanie zaawansowane
 
-//todo dorobić wszędzie odczyt z bazy danych i zapis tez
-//todo zrobić pobieranie rekordów z bazy przyspieszone (nie wybierac z listy tylko z bazy BETWEEN)
-
-//todo 1. Wszystkie dane aplikacji mają być przechowywane w bazie danych. Wykorzystaj
-//todo bibliotekę JSTL.
-//todo 2. Dodaj rolę administratora do aplikacji. Administrator ma mieć możliwość:
-//todo - usuwania całych postów,
-//todo - usuwania odpowiedzi,
-//todo - aktualizacji treści odpowiedzi.
+//todo zrobić pobieranie rekordów w paginacji z bazy przyspieszone (nie wybierac z listy tylko z bazy BETWEEN)
 
 //todo popraw zeby sie wyswietlalo brak oceny jesli nei ma ocen
-//todo popraw sesje
+//todo popraw sesje - zawsze jest teraz 0
+//todo popraw że tylko admin może edytować i usuwać
+//todo popraw wygląd usuwania
+//todo popraw pobieranie pytan/odp wychodzi poza zakres
 
 

@@ -33,11 +33,12 @@ public class LoginFilter implements Filter {
             try {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod","root","");
                 Statement statement = conn.createStatement();
-                String sql = "SELECT id FROM user WHERE (email='"+login+"' OR username='"+login+"') AND password='"+password+"'";
+                String sql = "SELECT id, id_type_user FROM user WHERE (email='"+login+"' OR username='"+login+"') AND password='"+password+"'";
                 ResultSet resultSet = statement.executeQuery(sql);
                 if (resultSet.isBeforeFirst() ) {
                     resultSet.next();
                     request.setAttribute("login",resultSet.getInt("id"));
+                    request.setAttribute("type",resultSet.getInt("id_type_user"));
                     chain.doFilter(request, response);
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("index");

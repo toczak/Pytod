@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet implements ServletRequestListener 
         request.setCharacterEncoding("utf-8");
         RequestDispatcher rd = request.getRequestDispatcher("index");
         request.getSession().setAttribute("login", request.getAttribute("login"));
+        request.getSession().setAttribute("type", request.getAttribute("type"));
         rd.forward(request, response);
     }
 

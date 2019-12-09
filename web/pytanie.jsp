@@ -25,6 +25,13 @@
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
     <link rel="shortcut icon" href="res/icon.ico?">
+    <script>
+        function confirmGo(m, u) {
+            if (confirm(m)) {
+                window.location = u;
+            }
+        }
+    </script>
     <style>
         .red-text {
             color: black;
@@ -59,24 +66,32 @@
                 SELECT id_user,text,date FROM post WHERE id=${id};
             </sql:query>
             <!-- Blog Post -->
-            <div class="card mb-4 ${color} border-dark">
-                <div class="card-body">
-                    <div class="row">
-                        <p class="card-text col-9 red-text"><c:out value="${post2.rowsByIndex[0][1]}"/></p>
-                        <div class="ml-auto col-3 border-left">
-                            <p class="ml-auto">Data dodania:
-                                <br/><i><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-                                                        value="${post2.rowsByIndex[0][2]}"/></i></p>
-                            <p class="ml-auto">Użytkownik:<br/>
-                                <sql:query dataSource="${db}" var="post">
-                                    SELECT username FROM user WHERE id=${post2.rowsByIndex[0][0]};
-                                </sql:query>
-                                <b><c:out value="${post.rowsByIndex[0][0]}"/></b>
-                            </p>
+            <c:forEach var="post2" items="${post2.rows}">
+                <div class="card mb-4 ${color} border-dark">
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="card-text col-9 red-text">${post2.text}</p>
+                            <div class="ml-auto col-3 border-left">
+                                <p class="ml-auto">Data dodania:
+                                    <br/><i><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+                                                            value="${post2.date}"/></i></p>
+                                <p class="ml-auto">Użytkownik:<br/>
+                                    <sql:query dataSource="${db}" var="post">
+                                        SELECT username FROM user WHERE id=${post2.id_user};
+                                    </sql:query>
+                                    <b><c:out value="${post.rowsByIndex[0][0]}"/></b>
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    <c:if test="${sessionScope.type==3}">
+                        <div class="card-footer text-muted">
+                            Panel administratora: <a
+                                href="javascript:confirmGo('Czy na pewno chcesz usunąć pytanie?','usun-pytanie.jsp?id=<c:out value="${id}"/>')">Usuń</a>
+                        </div>
+                    </c:if>
                 </div>
-            </div>
+            </c:forEach>
 
             <sql:query dataSource="${db}" var="table">
                 SELECT * FROM answer_post WHERE id_post=${id};
@@ -122,56 +137,17 @@
                                     <m:GradeAnswer idPost='${id}' idAnswer="${answer.id}"/>
                                 </c:otherwise>
                             </c:choose>
-
-                                <%--<%--%>
-                                <%--if (session.getAttribute("login") == null || answer.getAuthor().equals(session.getAttribute("login")) ||--%>
-                                <%--JSONGradeAnswer.checkGradeAnswerOfUser(answer.getId(), (String) session.getAttribute("login"))) {--%>
-                                <%--%>--%>
-                                <%--<small class="text-muted mr-auto ml-3">Ocena:--%>
-                                <%--<b><%=JSONGradeAnswer.getAverageOfAnswer(answer.getId())%>--%>
-                                <%--</b></small>--%>
-
-                                <%--<% } else {%>--%>
-                                <%--<m:GradeAnswer idPost='<%=(int) request.getAttribute("id")%>'--%>
-                                <%--idAnswer="<%=answer.getId()%>"/>--%>
-                                <%--<%}%>--%>
                         </div>
                     </div>
+                    <c:if test="${sessionScope.type==3}">
+                        <div class="card-footer text-muted">
+                            Panel administratora: <a
+                                href="edytuj-odpowiedz.jsp?id_answer=<c:out value="${answer.id}"/>&id_post=<c:out value="${id}"/>">Edytuj</a>
+                            <a href="javascript:confirmGo('Czy na pewno chcesz usunąć odpowiedz?','usun-odpowiedz.jsp?id_answer=<c:out value="${answer.id}"/>&id_post=<c:out value="${id}"/>')">Usuń</a>
+                        </div>
+                    </c:if>
                 </div>
             </c:forEach>
-
-            <%--<%--%>
-            <%--JSONGradeAnswer.setRealPath(request.getServletContext().getRealPath(""));--%>
-            <%--List<AnswerPost> answerPostList = JSONAnswerPost.getAnswerPostListWithPostId((int) request.getAttribute("id"));--%>
-            <%--for (AnswerPost answer : answerPostList) {--%>
-            <%--%>--%>
-            <%--<div class="card mb-4">--%>
-            <%--<div class="card-header">--%>
-            <%--Użytkownik <b><%=answer.getAuthor()%>--%>
-            <%--</b> napisał dnia <i><%=answer.getDate()%>--%>
-            <%--</i>:--%>
-            <%--</div>--%>
-            <%--<div class="card-body">--%>
-            <%--<p class="card-text"><%=answer.getText()%>--%>
-            <%--</p>--%>
-            <%--</div>--%>
-            <%--<div class="card-footer text-muted p-0">--%>
-            <%--<div class="d-flex m-1">--%>
-            <%--<%--%>
-            <%--if (session.getAttribute("login") == null || answer.getAuthor().equals(session.getAttribute("login")) ||--%>
-            <%--JSONGradeAnswer.checkGradeAnswerOfUser(answer.getId(), (String) session.getAttribute("login"))) {--%>
-            <%--%>--%>
-            <%--<small class="text-muted mr-auto ml-3">Ocena:--%>
-            <%--<b><%=JSONGradeAnswer.getAverageOfAnswer(answer.getId())%>--%>
-            <%--</b></small>--%>
-
-            <%--<% } else {%>--%>
-            <%--<m:GradeAnswer idPost='<%=(int) request.getAttribute("id")%>' idAnswer="<%=answer.getId()%>"/>--%>
-            <%--<%}%>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<%}%>--%>
 
 
             <c:if test="${sessionScope.login!=null}">

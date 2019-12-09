@@ -25,7 +25,7 @@ public class PostServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//        System.out.println(request.getParameter("id"));
         if (request.getParameter("id").isEmpty() || request.getParameter("id") == null) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("index");
             requestDispatcher.forward(request, response);

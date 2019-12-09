@@ -28,15 +28,6 @@ public class GradeAnswerServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod", "root", "");
             if(grade>0 && grade<=10 && !userGradedAnswer(conn, idAnswer,idUser)) {
-//                JSONGradeAnswer.setRealPath(getServletContext().getRealPath(""));
-//                JSONGradeAnswer.readGradeAnswerPostList();
-//                List<GradeAnswer> gradeAnswerList = JSONGradeAnswer.getGradeAnswerList();
-//                GradeAnswer gradeAnswer = new GradeAnswer();
-//                gradeAnswer.setGrade(grade);
-//                gradeAnswer.setAnswerId(idAnswer);
-//                gradeAnswer.setUsername((String) request.getSession().getAttribute("login"));
-//                gradeAnswerList.add(gradeAnswer);
-//                JSONGradeAnswer.saveGradeAnswerListToJSONFile(gradeAnswerList);
                 RequestDispatcher rd = request.getRequestDispatcher("index");
                 request.setAttribute("komunikat", "<center><font color='green'><h2>Poprawnie się zarejestrowałeś! Możesz się zalogować.</h2></font></center>");
                 PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO grade_answer(id_answer_post,id_user,grade) VALUES(?,?,?)");
