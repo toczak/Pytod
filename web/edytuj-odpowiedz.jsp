@@ -4,6 +4,9 @@
 <c:if test="${sessionScope.login==null}">
     <c:redirect url="index.jsp"/>
 </c:if>
+<c:if test="${sessionScope.type != 3}">
+    <c:redirect url="index"/>
+</c:if>
 <%
     request.setCharacterEncoding("UTF-8");
 %>

@@ -130,7 +130,15 @@
                                             <sql:query dataSource="${db}" var="table2">
                                                 SELECT AVG(grade) FROM grade_answer WHERE id_answer_post = ${answer.id};
                                             </sql:query>
-                                            <c:out value="${table2.rowsByIndex[0][0]}"/>
+                                            <c:choose>
+                                                <c:when test="${not empty table2.rowsByIndex[0][0]}">
+                                        <%--<c:when test="${empty table2 || table2.rowsByIndex[0][0]!=0 || table2.rowsByIndex[0][0]!=0.0 || table2.rowsByIndex[0][0]!='' || table2.rowsByIndex[0][0]!=null}">--%>
+                                                    <c:out value="${table2.rowsByIndex[0][0]}"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:out value="Brak ocen"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </b></small>
                                 </c:when>
                                 <c:otherwise>
