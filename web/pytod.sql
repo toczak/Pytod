@@ -8,7 +8,6 @@ CREATE TABLE `type_user` (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name varchar(20) UNIQUE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
 INSERT INTO type_user (name) VALUES
 ('Użytkownik'),
 ('Moderator'),
@@ -20,10 +19,13 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `id_type_user` INTEGER NOT NULL,
+  `deleted` BOOLEAN DEFAULT 0,
   FOREIGN KEY (id_type_user) REFERENCES type_user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 INSERT INTO user(username,email,password,id_type_user) VALUES
 ('test1','test1@test.pl','test',1),
+('test11','test11@test.pl','test',1),
+('test111','test111@test.pl','test',1),
 ('test2','test2@test.pl','test',2),
 ('test3','test3@test.pl','test',3);
 

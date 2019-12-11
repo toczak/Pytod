@@ -13,6 +13,10 @@
           <element id="library" level="application" name="javax.servlet.jsp.jstl:jstl-api:1.2" />
           <element id="library" level="project" name="mysql:mysql-connector-java:5.1.36" />
           <element id="library" level="application" name="mysql:mysql-connector-java:5.1.36" />
+          <element id="library" level="application" name="javax.faces-api-2.3" />
+          <element id="library" level="project" name="cdi-api-2.0" />
+          <element id="library" level="project" name="javax.faces-2.2.8" />
+          <element id="library" level="project" name="BootsFaces-OSP-1.4.2" />
         </element>
       </element>
     </root>

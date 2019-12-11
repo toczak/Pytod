@@ -22,6 +22,8 @@
             </div>
             <hr/>
         </c:if>
+        <a href="admin/index.xhtml">Panel administratora</a>
+        <a href="index3.xhtml">Panel administratora</a>
 
         <p class="m-0 text-center text-white">Copyright &copy; Patryk Potoczak 2019</p>
     </div>

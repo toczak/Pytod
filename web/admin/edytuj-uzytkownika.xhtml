@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Pytod - Panel administratora</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/"/>
+
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+</h:head>
+<h:body>
+    <b:navBar class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col col-sm-3 col-md-2 mr-0" href="index.xhtml">Pytod</a>
+        <ul class="col navbar-nav ml-auto d-flex flex-row px-0">
+            <li class="ml-auto nav-item text-nowrap">
+                <a class="nav-link" href="../index">Opuść panel</a>
+            </li>
+            <li class="nav-item px-3 text-nowrap">
+                <a class="nav-link" href="../wyloguj">Wyloguj</a>
+            </li>
+        </ul>
+    </b:navBar>
+
+    <div class="container-fluid">
+        <div class="row">
+            <b:navBar id="leftNav" class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
+                <!--<b:button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+                <!--<span class="navbar-toggler-icon"></span>-->
+                <!--</b:button>-->
+                <div class="collapse navbar-collapse align-items-sm-start" id="navbarNav">
+                    <ul class="navbar-nav flex-sm-column mb-2">
+                        <!--<h6 class="sidebar-heading d-sm-flex justify-content-sm-between align-items-center px-sm-1 mt-4 mb-1 text-muted">-->
+                        <!--<span>Panel administratora</span>-->
+                        <!--</h6>-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="lista-uzytkownikow.xhtml">
+                                Lista użytkowników
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </b:navBar>
+
+            <div class="col-sm-9 col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Edytuj użytkownika</h1>
+                </div>
+
+
+                <h:form id="form">
+                    <h3>Edytuj użytkownika</h3>
+                    <!--<h:panelGrid columns="3">-->
+                        <h:outputLabel for="nick">Nick:</h:outputLabel>
+                        <h:outputLabel value="#{editUser.username}" id="nick"/>
+                        <br/>
+                        <h:outputLabel for="type">Typ konta:</h:outputLabel>
+                        <!--<h:inputText value="#{editUser.id_type_user}" id="type"/>-->
+                        <h:selectOneMenu value="#{editUser.id_type_user}" id="type">
+                            <f:selectItem itemValue="1" itemLabel="Użytkownik" />
+                            <f:selectItem itemValue="2" itemLabel="Moderator" />
+                            <f:selectItem itemValue="3" itemLabel="Administrator" />
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel for="password">Hasło:</h:outputLabel>
+                        <h:inputText value="#{editUser.password}" id="password"/>
+                        <br/>
+
+
+                        <h:commandButton action="#{userBean.updateUser(editUser)}" value="Zapisz"/>
+
+                    <!--</h:panelGrid>-->
+                </h:form>
+
+            </div>
+
+        </div>
+    </div>
+
+</h:body>
+</html>
