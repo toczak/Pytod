@@ -31,38 +31,41 @@ public class LoginFilter implements Filter {
             requestDispatcher.include(request, response);
         } else {
             try {
+                Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pytod","root","");
                 Statement statement = conn.createStatement();
                 String sql = "SELECT id, id_type_user FROM user WHERE (email='"+login+"' OR username='"+login+"') AND password='"+password+"'";
                 ResultSet resultSet = statement.executeQuery(sql);
                 if (resultSet.isBeforeFirst() ) {
                     resultSet.next();
-                    request.setAttribute("login",resultSet.getInt("id"));
-                    request.setAttribute("type",resultSet.getInt("id_type_user"));
-                    chain.doFilter(request, response);
+                    int id = resultSet.getInt("id");
+                    int id_type = resultSet.getInt("id_type_user");
+                    sql = "SELECT blocked,must_change_password,show_alert,text_alert FROM user WHERE id="+resultSet.getInt("id");
+                    ResultSet resultSet2 = statement.executeQuery(sql);
+                    resultSet2.next();
+                    if(!resultSet2.getBoolean("blocked")) {
+                        request.setAttribute("login", id);
+                        request.setAttribute("type", id_type);
+                        request.setAttribute("mustChangePassword", resultSet2.getBoolean("must_change_password"));
+                        request.setAttribute("mustShowAlert", resultSet2.getBoolean("show_alert"));
+                        request.setAttribute("alertText", resultSet2.getString("text_alert"));
+                        chain.doFilter(request, response);
+                    } else{
+                        RequestDispatcher rd = request.getRequestDispatcher("index");
+                        request.setAttribute("komunikat", "<center><font color=red><h2>Konto zablokowane! Skontaktuj się z administratorem.</h2></font></center>");
+                        saveInfoToFile(request.getServletContext().getRealPath(""), ip);
+                        rd.include(request, response);
+                    }
                 } else {
                     RequestDispatcher rd = request.getRequestDispatcher("index");
                     request.setAttribute("komunikat", "<center><font color=red><h2>Błędny login lub hasło!</h2></font></center>");
                     saveInfoToFile(request.getServletContext().getRealPath(""), ip);
                     rd.include(request, response);
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
-//            JSONUser.setRealPath(request.getServletContext().getRealPath(""));
-//            if (JSONUser.readUsersList()) {
-//                userList = JSONUser.getUserList();
-//                if (checkUserAtList(login, password)) {
-//                    request.setAttribute("login",login);
-//                    chain.doFilter(request, response);
-//                } else {
-//                    RequestDispatcher rd = request.getRequestDispatcher("index");
-//                    request.setAttribute("komunikat", "<center><font color=red><h2>Błędny login lub hasło!</h2></font></center>");
-//                    saveInfoToFile(request.getServletContext().getRealPath(""), ip);
-//                    rd.include(request, response);
-//                }
-//            }
         }
     }
 

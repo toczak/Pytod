@@ -14,6 +14,10 @@ public class UserBean {
     private String email;
     private String password;
     private String typeName;
+    private boolean blocked;
+    private boolean mustChangePassword;
+    private boolean mustShowAlert;
+    private String alertText;
     public List userList;
 
     public UserBean(int id, int id_type_user, String username, String email, String password) {
@@ -96,4 +100,35 @@ public class UserBean {
         return DatabaseOperation.getUsernameById(id);
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public boolean isMustChangePassword() {
+        return mustChangePassword;
+    }
+
+    public void setMustChangePassword(boolean mustChangePassword) {
+        this.mustChangePassword = mustChangePassword;
+    }
+
+    public boolean isMustShowAlert() {
+        return mustShowAlert;
+    }
+
+    public void setMustShowAlert(boolean mustShowAlert) {
+        this.mustShowAlert = mustShowAlert;
+    }
+
+    public String getAlertText() {
+        return alertText;
+    }
+
+    public void setAlertText(String alertText) {
+        this.alertText = alertText;
+    }
 }

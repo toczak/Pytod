@@ -3,6 +3,9 @@
 <c:if test="${currentPage==null}">
     <c:redirect url="index"/>
 </c:if>
+<c:if test="${sessionScope.mustChangePassword==true}">
+    <c:redirect url="zmien-haslo.jsp"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -43,5 +46,16 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<%
+    if (session.getAttribute("login") != null) {
+        if ((boolean) session.getAttribute("mustShowAlert")) { %>
+<script type="text/javascript">
+    alert("Komunikat od administracji:\n<%=session.getAttribute("alertText")%>");
+</script>
+<%
+            session.setAttribute("mustShowAlert", false);
+        }
+    }
+%>
 
 </html>

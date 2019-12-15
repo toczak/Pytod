@@ -17,8 +17,10 @@
 </h:head>
 <h:body>
     <b:navBar class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col col-sm-3 col-md-2 mr-0" href="index.xhtml">Pytod</a>
         <ul class="col navbar-nav ml-auto d-flex flex-row px-0">
+            <li>
+                <a class="navbar-brand col col-sm-3 col-md-2 mr-0" href="index.xhtml">Pytod</a>
+            </li>
             <li class="ml-auto nav-item text-nowrap">
                 <a class="nav-link" href="../index">Opuść panel</a>
             </li>
@@ -30,17 +32,17 @@
 
     <div class="container-fluid">
         <div class="row">
-            <b:navBar id="leftNav" class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
-                <!--<b:button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-                    <!--<span class="navbar-toggler-icon"></span>-->
-                <!--</b:button>-->
+            <b:navBar id="leftNav"
+                      class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
                 <div class="collapse navbar-collapse align-items-sm-start" id="navbarNav">
-                    <ul class="navbar-nav flex-sm-column mb-2">
-                        <!--<h6 class="sidebar-heading d-sm-flex justify-content-sm-between align-items-center px-sm-1 mt-4 mb-1 text-muted">-->
-                            <!--<span>Panel administratora</span>-->
-                        <!--</h6>-->
+                    <ul class="navbar-nav flex-sm-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="lista-uzytkownikow.xhtml">
+                            <a class="nav-link" href="/admin/index.xhtml">
+                                Strona główna
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/lista-uzytkownikow.xhtml">
                                 Lista użytkowników
                             </a>
                         </li>

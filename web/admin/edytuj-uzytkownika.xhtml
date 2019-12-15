@@ -29,7 +29,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            <b:navBar id="leftNav" class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
+            <b:navBar id="leftNav"
+                      class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
                 <!--<b:button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
                 <!--<span class="navbar-toggler-icon"></span>-->
                 <!--</b:button>-->
@@ -57,23 +58,45 @@
                 <h:form id="form">
                     <h3>Edytuj użytkownika</h3>
                     <!--<h:panelGrid columns="3">-->
-                        <h:outputLabel for="nick">Nick:</h:outputLabel>
-                        <h:outputLabel value="#{editUser.username}" id="nick"/>
-                        <br/>
-                        <h:outputLabel for="type">Typ konta:</h:outputLabel>
-                        <!--<h:inputText value="#{editUser.id_type_user}" id="type"/>-->
-                        <h:selectOneMenu value="#{editUser.id_type_user}" id="type">
-                            <f:selectItem itemValue="1" itemLabel="Użytkownik" />
-                            <f:selectItem itemValue="2" itemLabel="Moderator" />
-                            <f:selectItem itemValue="3" itemLabel="Administrator" />
-                        </h:selectOneMenu>
-                        <br/>
-                        <h:outputLabel for="password">Hasło:</h:outputLabel>
-                        <h:inputText value="#{editUser.password}" id="password"/>
-                        <br/>
+                    <table>
+                        <tr>
+                            <td><h:outputLabel for="nick">Nick:</h:outputLabel></td>
+                            <td><h:outputLabel value="#{editUser.username}" id="nick"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="type">Typ konta:</h:outputLabel></td>
+                            <!--<h:inputText value="#{editUser.id_type_user}" id="type"/>-->
+                            <td><h:selectOneMenu value="#{editUser.id_type_user}" id="type">
+                                <f:selectItem itemValue="1" itemLabel="Użytkownik"/>
+                                <f:selectItem itemValue="2" itemLabel="Moderator"/>
+                                <f:selectItem itemValue="3" itemLabel="Administrator"/>
+                            </h:selectOneMenu></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="password">Hasło:</h:outputLabel></td>
+                            <td><h:inputText value="#{editUser.password}" id="password"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="password">Konto zablokowane:</h:outputLabel></td>
+                            <td><h:selectBooleanCheckbox value="#{editUser.blocked}"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="changePassword">Wymuś zmianę hasła:</h:outputLabel></td>
+                            <td><h:selectBooleanCheckbox value="#{editUser.mustChangePassword}" id="changePassword"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="showAlert">Wyświetl komunikat po zalogowaniu:</h:outputLabel></td>
+                            <td><h:selectBooleanCheckbox value="#{editUser.mustShowAlert}" id="showAlert"/></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel for="alertText">Treść komunikatu:</h:outputLabel></td>
+                            <td><h:inputTextarea value="#{editUser.alertText}" id="alertText"/></td>
+                        </tr>
 
+                    </table>
 
-                        <h:commandButton action="#{userBean.updateUser(editUser)}" value="Zapisz"/>
+                    <h:commandButton action="#{userBean.updateUser(editUser)}" value="Zapisz"/>
 
                     <!--</h:panelGrid>-->
                 </h:form>

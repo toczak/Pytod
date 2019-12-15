@@ -20,6 +20,10 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `id_type_user` INTEGER NOT NULL,
   `deleted` BOOLEAN DEFAULT 0,
+  `blocked` BOOLEAN DEFAULT 0,
+  `must_change_password` BOOLEAN DEFAULT 0,
+  `show_alert` BOOLEAN DEFAULT 0,
+  `text_alert` varchar(200),
   FOREIGN KEY (id_type_user) REFERENCES type_user(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 INSERT INTO user(username,email,password,id_type_user) VALUES

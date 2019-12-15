@@ -23,7 +23,8 @@ public class IndexPostServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        JSON.JSONPost.setMaxNewPostOnPanel(Integer.parseInt(getServletContext().getInitParameter("MaxNewPost")));
+//        JSON.JSONPost.setMaxNewPostOnPanel(Integer.parseInt(getServletContext().getInitParameter("MaxNewPost")));
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
