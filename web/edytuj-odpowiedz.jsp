@@ -39,13 +39,9 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
         <div class="col-md-8">
-
             <h1 class="my-4">
             </h1>
-
-            <!-- Blog Post -->
             <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
                                url="jdbc:mysql://localhost:3306/pytod?useUnicode=yes&characterEncoding=UTF-8" user="root" password=""/>
             <c:if test="${pageContext.request.method=='POST'}">
@@ -92,7 +88,6 @@
         <%@ include file="include/panel.jsp" %>
 
     </div>
-    <!-- /.row -->
 
 </div>
 

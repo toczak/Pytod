@@ -35,17 +35,10 @@
     <input type="text" name="inputLogin" class="form-control" placeholder="Login / adres e-mail" required=""
            autofocus="">
     <input type="password" name="inputPassword" class="form-control" placeholder="Hasło" required="">
-    <!--<div class="checkbox mb-2">-->
-    <!--<label>-->
-    <!--<input type="checkbox" value="remember-me"> Pamiętaj mnie-->
-    <!--</label>-->
-    <!--</div>-->
     <input class="btn btn-lg btn-primary btn-block" value="Zaloguj" type="submit">
     <a class="nav-link" href="rejestracja.jsp">Nie masz konta? Zarejestruj się.</a>
-    <!--<p class="mt-5 mb-3 text-muted">© 2017-2018</p>-->
 </form>
 
-<%--<%@ include file="include/footer.jsp" %>--%>
 
 </body>
 </html>

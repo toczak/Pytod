@@ -56,7 +56,6 @@
 
     <div class="row">
 
-        <!-- Blog Entries Column -->
         <div class="col-md-8">
 
             <h1>
@@ -65,7 +64,6 @@
             <sql:query dataSource="${db}" var="post2">
                 SELECT id_user,text,date FROM post WHERE id=${id};
             </sql:query>
-            <!-- Blog Post -->
             <c:forEach var="post2" items="${post2.rows}">
                 <div class="card mb-4 ${color} border-dark">
                     <div class="card-body">
@@ -118,7 +116,7 @@
                         <div class="d-flex m-1">
 
                             <c:if test="${sessionScope.login!=null}">
-                                <%--jeżeli jest zalogowany to sprawdz czy już odpowiadał--%>
+                                <%-- if he login, check whether graded--%>
                                 <sql:query dataSource="${db}" var="userCheck">
                                     SELECT id FROM grade_answer WHERE id_user = ${sessionScope.login} AND id_answer_post = ${answer.id};
                                 </sql:query>
@@ -132,7 +130,6 @@
                                             </sql:query>
                                             <c:choose>
                                                 <c:when test="${not empty table2.rowsByIndex[0][0]}">
-                                        <%--<c:when test="${empty table2 || table2.rowsByIndex[0][0]!=0 || table2.rowsByIndex[0][0]!=0.0 || table2.rowsByIndex[0][0]!='' || table2.rowsByIndex[0][0]!=null}">--%>
                                                     <c:out value="${table2.rowsByIndex[0][0]}"/>
                                                 </c:when>
                                                 <c:otherwise>
@@ -170,15 +167,9 @@
                     </div>
                 </div>
             </c:if>
-
-
         </div>
-
-
         <%@ include file="include/panel.jsp" %>
-
     </div>
-    <!-- /.row -->
 
 </div>
 <footer>

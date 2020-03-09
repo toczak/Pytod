@@ -50,11 +50,4 @@ public class Post {
     }
 
 
-//    public List<AnswerPost> getAnswerPosts() {
-//        return answerPosts;
-//    }
-//
-//    public void setAnswerPosts(List<AnswerPost> answerPosts) {
-//        this.answerPosts = answerPosts;
-//    }
 }

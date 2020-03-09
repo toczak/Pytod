@@ -73,7 +73,6 @@
             <div class="card">
                 <div class="card-body">
                     <form method="post">
-                        <%--<form method="post" action="dodaj-post">--%>
                     <h5 class="card-title">Wpisz swoje pytanie:</h5>
                     <textarea class="mb-3 form-control" name="textareaQuestion" rows="3"></textarea>
                     <input type="submit" class="btn btn-primary float-right" value="Zadaj"/>

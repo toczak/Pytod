@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
     <title>Pytod - Panel administratora - Lista użytkowników</title>
@@ -15,7 +16,15 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
 </h:head>
+
 <h:body>
+    <c:if test="#{requestScope['blad']!=null}}">
+        tete
+        <script type="text/javascript">
+            alert("Błąd podczas edycji konta!");
+        </script>
+    </c:if>
+
     <b:navBar class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
         <ul class="col navbar-nav ml-auto d-flex flex-row px-0">
             <li>
@@ -34,9 +43,6 @@
         <div class="row">
             <b:navBar id="leftNav"
                       class="navbar navbar-expand-sm col-sm-3 col-md-3 col-lg-2 navbar-light bg-light px-sm-0 py-sm-0 px-xl-3 d-sm-flex flex-sm-column">
-                <!--<b:button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-                <!--<span class="navbar-toggler-icon"></span>-->
-                <!--</b:button>-->
                 <div class="collapse navbar-collapse align-items-sm-start" id="navbarNav">
                     <ul class="navbar-nav flex-sm-column">
                         <li class="nav-item">
@@ -61,8 +67,10 @@
 
                 <h:form>
                     <h:panelGrid columns="3">
-                        <b:inputText type="text" class="form-control mt-4" placeholder="Szukaj użytkownika..." value="#{searchBean.searchUsername}"/>
-                        <h:commandButton action="#{searchBean.readUserListFromDb()}" class="btn btn-dark" value="Szukaj"/>
+                        <b:inputText type="text" class="form-control mt-4" placeholder="Szukaj użytkownika..."
+                                     value="#{searchBean.searchUsername}"/>
+                        <h:commandButton action="#{searchBean.readUserListFromDb()}" class="btn btn-dark"
+                                         value="Szukaj"/>
                     </h:panelGrid>
                 </h:form>
 
@@ -94,15 +102,6 @@
                                              class="btn btn-primary"/>
                             <h:commandButton action="#{userBean.deleteUser(user.id)}" value="Usuń"
                                              class="btn btn-danger"/>
-                                <!--<f:ajax execute="@form" render="@form" />-->
-                            <!--<h:outputLink value="edytuj-uzytkownika.xhtml" >-->
-                            <!--Edytuj-->
-                            <!--<f:param name="id_user" value="#{user.id}" />-->
-                            <!--</h:outputLink>-->
-                            <!--<h:outputLink value="usun-uzytkownika.xhtml" >-->
-                            <!--Usuń-->
-                            <!--<f:param name="id_user" value="#{user.id}" />-->
-                            <!--</h:outputLink>-->
                         </h:column>
                     </h:dataTable>
                 </h:form>

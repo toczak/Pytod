@@ -13,13 +13,8 @@
 <html>
 <div class="col-md-8">
 
-    <%--<h1 class="my-4">--%>
-    <%--Lista pytań--%>
-    <%--</h1>--%>
-
     <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/pytod" user="root" password=""/>
-
 
     <c:forEach items="${postList}" var="list">
         <div class="card mb-4">
@@ -53,8 +48,6 @@
             <li class="page-item active"><span class="page-link">
                 ${currentPage}
             </span></li>
-            <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-            <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
             <li class="page-item <c:if test="${currentPage == maxPage}">disabled</c:if>">
                 <a class="page-link" href="index?strona=${currentPage+1}">Następna</a>
             </li>

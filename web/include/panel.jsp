@@ -1,6 +1,6 @@
 <%@ page import="Model.Post" %>
 <%@ page import="java.util.List" %>
-<%@ page import="JSON.JSONPost" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Patryk
   Date: 23.11.2019

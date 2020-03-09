@@ -1,6 +1,5 @@
 package Servlets;
 
-import JSON.JSONPost;
 import Model.Post;
 
 import javax.servlet.RequestDispatcher;
@@ -27,8 +26,6 @@ public class SearchServlet extends HttpServlet {
     void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-//        JSONPost.setRealPath(getServletContext().getRealPath(""));
-//        JSONPost.readPostList();
         List<Post> postList = searchAndGetPostList(request.getParameter("fraza"));
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));
@@ -80,9 +77,7 @@ public class SearchServlet extends HttpServlet {
                     list.add(new Post(resultSet.getInt("id"), resultSet.getString("text"), resultSet.getInt("id_user"), resultSet.getDate("date")));
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return list;

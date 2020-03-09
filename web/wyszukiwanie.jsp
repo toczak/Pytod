@@ -32,10 +32,7 @@
     <div class="row">
 
 
-        <!-- Blog Entries Column -->
         <div class="col-md-8">
-
-
 
             <c:choose>
                 <c:when test="${postList==null}">
@@ -51,7 +48,6 @@
                     <sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
                                        url="jdbc:mysql://localhost:3306/pytod" user="root" password=""/>
 
-                    <!-- Blog Post -->
                     <c:forEach items="${postList}" var="list">
                         <div class="card mb-4">
                             <div class="card-body">

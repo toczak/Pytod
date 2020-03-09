@@ -1,9 +1,5 @@
 package Servlets;
 
-import JSON.JSONUser;
-import Model.Post;
-import Model.User;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.*;
 import java.util.regex.Pattern;
 
 @WebServlet(name = "Servlets.RegisterServlet")
@@ -98,7 +93,4 @@ public class RegisterServlet extends HttpServlet {
         return resultSet.isBeforeFirst();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

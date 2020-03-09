@@ -1,4 +1,3 @@
-import JSON.JSONUser;
 import Model.User;
 
 import javax.servlet.*;
@@ -69,13 +68,6 @@ public class LoginFilter implements Filter {
         }
     }
 
-    private boolean checkUserAtList(String login, String password) {
-        for (User user : userList) {
-            if ((login.equalsIgnoreCase(user.getUsername()) || login.equalsIgnoreCase(user.getEmail())) && password.equals(user.getPassword()))
-                return true;
-        }
-        return false;
-    }
 
     private void saveInfoToFile(String realPath, String ip) throws IOException {
         File file = new File(realPath + "Dane\\Logs.txt");
@@ -84,8 +76,5 @@ public class LoginFilter implements Filter {
         fr.close();
     }
 
-    public void init(FilterConfig config) throws ServletException {
-
-    }
 
 }

@@ -41,9 +41,6 @@ public class DatabaseOperation {
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 user.setId_type_user(rs.getInt("id_type_user"));
-//                user.setId_type_user(rs.getInt("id_type_user"));
-//                user.setId_type_user(rs.getInt("id_type_user"));
-//                user.setId_type_user(rs.getInt("id_type_user"));
                 users.add(user);
             }
             rs.close();
@@ -117,20 +114,41 @@ public class DatabaseOperation {
 
     public static String updateUserByEdit(UserBean updateUser) {
         try {
-            pst = connectToDatabase().prepareStatement("update user set password=?, id_type_user=?, blocked=?, must_change_password=?,show_alert=?,text_alert=? where id=?");
-            pst.setString(1, updateUser.getPassword());
-            pst.setInt(2, updateUser.getId_type_user());
-            pst.setBoolean(3,updateUser.isBlocked());
-            pst.setBoolean(4,updateUser.isMustChangePassword());
-            pst.setBoolean(5,updateUser.isMustShowAlert());
-            pst.setString(6,updateUser.getAlertText());
-            pst.setInt(7, updateUser.getId());
-            pst.executeUpdate();
-            connection.close();
+            if(!checkUsernameIsExist(updateUser.getUsername(),updateUser.getId())) {
+                pst = connectToDatabase().prepareStatement("update user set username=?,password=?, id_type_user=?, blocked=?, must_change_password=?,show_alert=?,text_alert=? where id=?");
+                pst.setString(1, updateUser.getUsername());
+                pst.setString(2, updateUser.getPassword());
+                pst.setInt(3, updateUser.getId_type_user());
+                pst.setBoolean(4, updateUser.isBlocked());
+                pst.setBoolean(5, updateUser.isMustChangePassword());
+                pst.setBoolean(6, updateUser.isMustShowAlert());
+                pst.setString(7, updateUser.getAlertText());
+                pst.setInt(8, updateUser.getId());
+                pst.executeUpdate();
+                connection.close();
+            }
         } catch (Exception sqlException) {
             sqlException.printStackTrace();
         }
-        return "lista-uzytkownikow.xhtml?faces-redirect=true";
+        return "lista-uzytkownikow.xhtml?faces-redirect=true&blad=true";
+    }
+
+    private static boolean checkUsernameIsExist(String username, int id) {
+        boolean isExist = false;
+        try {
+            pst = connectToDatabase().prepareStatement("select id from user WHERE id<>" + id + " AND username='"+username+"'");
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            System.out.println(rs.getRow());
+            if(rs.getRow()>0)
+                isExist = true;
+            rs.close();
+            pst.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isExist;
     }
 
     public static String deleteUser(int id) {
@@ -160,7 +178,6 @@ public class DatabaseOperation {
         sessionMapObj.put("listUser", newUsers);
 
         return "wyszukiwanie.xhtml?faces-redirect=true";
-
 
     }
 

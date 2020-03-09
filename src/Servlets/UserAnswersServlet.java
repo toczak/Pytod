@@ -1,9 +1,6 @@
 package Servlets;
 
-import JSON.JSONAnswerPost;
-import JSON.JSONPost;
 import Model.AnswerPost;
-import Model.Post;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +22,6 @@ public class UserAnswersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-//        JSONAnswerPost.setRealPath(getServletContext().getRealPath(""));
         List<AnswerPost> answerPostList = getAllAnswersListByUserName(Integer.parseInt(request.getParameter("id_user")));
         int currentPage;
         int maxPost = Integer.parseInt(getServletContext().getInitParameter("MaxAllPost"));

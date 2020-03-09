@@ -38,30 +38,17 @@
                 =${post.id};
             </sql:query>
             <c:forEach var="answer" items="${post.rows}">
-                <%--<c:out value="${answer.id}"/>--%>
                 <sql:update dataSource="${db}" var="data">
                     DELETE FROM grade_answer
                     WHERE id_answer_post='${answer.id}'
                 </sql:update>
             </c:forEach>
         </c:forEach>
-        <%--<sql:query dataSource="${db}" var="post">--%>
-            <%--SELECT id FROM answer_post WHERE id_user=${param.id_user};--%>
-        <%--</sql:query>--%>
-        <%--<c:forEach var="answer" items="${post.rows}">--%>
-            <%--&lt;%&ndash;<c:out value="${answer.id}"/>&ndash;%&gt;--%>
-            <%--<sql:update dataSource="${db}" var="data">--%>
-                <%--DELETE FROM grade_answer--%>
-                <%--WHERE id_answer_post='${answer.id}'--%>
-            <%--</sql:update>--%>
-        <%--</c:forEach>--%>
 
         <sql:update dataSource="${db}" var="data">
             DELETE FROM answer_post
             WHERE id_user='${param.id_user}'
         </sql:update>
-
- <%--odta--%>
 
         <sql:query dataSource="${db}" var="post">
             SELECT id FROM post WHERE id_user=${param.id_user};

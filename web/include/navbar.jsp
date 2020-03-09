@@ -1,5 +1,4 @@
-<%@ page import="JSON.JSONPost" %>
-<%@ page import="JSON.JSONAnswerPost" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Patryk
   Date: 22.11.2019

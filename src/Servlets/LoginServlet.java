@@ -1,8 +1,6 @@
 package Servlets;
 
 import Beans.DatabaseOperation;
-import JSON.JSONUser;
-import Model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
